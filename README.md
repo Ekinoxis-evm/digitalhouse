@@ -67,11 +67,76 @@ I --> K[Check-Out y Cierre de Contrato]
 
 ---
 
-```
 
 ## 🔄 How It Works
 
+```mermaid
+flowchart TD
+
+%% --- FLUJO PRINCIPAL DIGITAL HOUSE ---
+A[🏁 INITIAL RESERVATION<br/>(FREE → AUCTION)] --> B[⚖️ AUCTION SYSTEM<br/>(AUCTION)]
+B --> C[🧭 DECISION<br/>(KEEP or CEDE)]
+C -->|Keep Reservation| D[🏠 CHECK-IN<br/>(AUCTION → SETTLED)]
+C -->|Cede Reservation| E[💰 DISTRIBUTION OF VALUE]
+E --> D
+D --> F[🚪 CHECK-OUT<br/>(SETTLED → FREE)]
+
+%% --- DETALLES DE CADA ETAPA ---
+subgraph Detalles
+    A1["User A stakes 1,000 PYUSD → 100% ownership (vault shares)"]
+    A2["State: AUCTION | Nonce: 1"]
+    A --> A1 --> A2
+    
+    B1["Other users can bid (User B: 1,200 PYUSD / User C: 1,500 PYUSD)"]
+    B2["User A decides until 1 day before check-in"]
+    B --> B1 --> B2
+
+    C1["If KEEP → Bids refunded"]
+    C2["If CEDE → Highest bidder wins reservation"]
+    C --> C1
+    C --> C2
+
+    E1["Additional Value = 1,500 - 1,000 = 500 PYUSD"]
+    E2["Distribution: 20% DH | 50% Hotel | 30% User A"]
+    E3["User A total = 1,150 PYUSD (original + profit)"]
+    E --> E1 --> E2 --> E3
+
+    D1["Check-in triggers payment split: 95% Hotel | 5% DH"]
+    D2["Generates 6-digit on-chain code: 234567"]
+    D --> D1 --> D2
+
+    F1["Contract settles → Vault FREE"]
+    F2["Nonce increments: +1"]
+    F --> F1 --> F2
+end
+
+%% --- CONTRATOS INTELIGENTES Y ARQUITECTURA ---
+subgraph Smart_Contracts["⚙️ Smart Contract Architecture"]
+    SC1[🪙 DigitalHouseVault<br/>• Manages stakes & ownership<br/>• Tracks state (FREE/AUCTION/SETTLED)]
+    SC2[🏛️ AuctionManager<br/>• Receives bids<br/>• Handles time windows & refunds]
+    SC3[📜 SettlementAgent<br/>• Executes check-in/check-out<br/>• Distributes PYUSD<br/>• Emits receipts]
+    SC1 --> SC2 --> SC3
+end
+
+%% --- INTERACCIÓN ENTRE ACTORES Y CONTRATOS ---
+UA[👤 User A] -->|Stake & Decision| SC1
+UB[👥 Bidders (B, C)] -->|Submit Bids| SC2
+AI[🤖 AI Agent] -->|Analyzes Offers| SC2
+DH[🏗️ Digital House Protocol] -->|Receives Fee (20%)| SC3
+HTL[🏨 Hotel] -->|Receives Payment (50–95%)| SC3
+VAULT[💼 Vault State Machine] -->|Manages Ownership| SC1
+
+%% --- CONEXIONES ENTRE FLUJO Y CONTRATOS ---
+A -. interacts with .-> SC1
+B -. handled by .-> SC2
+D -. executed by .-> SC3
+E -. distributes via .-> SC3
+
+```
+
+## 🔄 How It Works
 ### Example
+```
 
 ┌─────────────────────────────────────────────────────────────┐
 │                    DIGITAL HOUSE FLOW                        │

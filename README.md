@@ -322,32 +322,47 @@ PYUSD:   TBD
 
 ```
 digitalhouse/
-├── contracts/                      # Smart contracts Solidity
-│   ├── core/                      # Contratos principales
+├── contracts/                      # Smart contracts (Hardhat)
+│   ├── core/                      # Core contracts
 │   │   ├── DigitalHouseFactory.sol
 │   │   └── DigitalHouseVault.sol
-│   ├── interfaces/                # Interfaces
+│   ├── interfaces/                # Contract interfaces
 │   │   ├── IDigitalHouseFactory.sol
 │   │   └── IDigitalHouseVault.sol
-│   ├── libraries/                 # Librerías reutilizables
-│   ├── mocks/                     # Contratos mock para testing
-│   └── utils/                     # Utilidades
+│   ├── libraries/                 # Reusable libraries
+│   ├── mocks/                     # Mock contracts for testing
+│   └── utils/                     # Utility contracts
 │
-├── ignition/modules/              # Módulos de deployment (Hardhat 3)
+├── frontend/                       # Next.js 14 frontend
+│   ├── app/                       # App Router pages
+│   │   ├── page.tsx              # Landing page
+│   │   ├── layout.tsx            # Root layout with Privy
+│   │   └── dashboard/            # Dashboard pages
+│   ├── components/                # React components
+│   │   ├── auth/                 # Authentication (Privy)
+│   │   ├── providers/            # Context providers
+│   │   ├── vault/                # Vault components
+│   │   └── ui/                   # Reusable UI
+│   ├── lib/                       # Utilities and config
+│   │   ├── config.ts             # App configuration
+│   │   ├── chains.ts             # Network definitions
+│   │   └── utils.ts              # Helper functions
+│   └── types/                     # TypeScript types
+│
+├── ignition/modules/              # Deployment modules (Hardhat 3)
 │   └── DigitalHouseFactory.ts
 │
-├── test/                          # Tests en TypeScript
-│   ├── unit/                      # Tests unitarios
-│   └── integration/               # Tests de integración
+├── test/                          # Contract tests
+│   ├── unit/                      # Unit tests
+│   └── integration/               # Integration tests
 │
-├── scripts/                       # Scripts de utilidad
-│   ├── deploy.ts                  # Deployment manual
-│   └── verify.ts                  # Verificación en exploradores
+├── scripts/                       # Deployment scripts
+│   ├── deploy.ts
+│   └── verify.ts
 │
-├── docs/                          # Documentación técnica
-├── hardhat.config.ts              # Configuración de Hardhat
+├── docs/                          # Documentation
+├── hardhat.config.ts              # Hardhat configuration
 ├── package.json
-├── tsconfig.json
 └── README.md
 ```
 
@@ -460,6 +475,74 @@ npm test            # Run tests
 npm run clean       # Clean artifacts
 npm run node        # Start local Hardhat node
 npm run console     # Open Hardhat console
+```
+
+### Frontend Setup (Next.js + Privy)
+
+After deploying contracts, set up the frontend:
+
+#### 1. Navigate to Frontend
+
+```bash
+cd frontend
+```
+
+#### 2. Install Frontend Dependencies
+
+```bash
+npm install
+```
+
+#### 3. Get Privy Credentials
+
+1. Create account at [dashboard.privy.io](https://dashboard.privy.io/)
+2. Create a new app
+3. Enable these testnets in Privy dashboard:
+   - Ethereum Sepolia (11155111)
+   - Arbitrum Sepolia (421614)
+   - Base Sepolia (84532)
+4. Enable login methods: Wallet, Email, Google, Twitter
+5. Copy your App ID and Client ID
+
+#### 4. Configure Frontend Environment
+
+Create `.env.local` file:
+
+```bash
+cp .env.example .env.local
+```
+
+Edit `.env.local`:
+
+```env
+# Privy (Required)
+NEXT_PUBLIC_PRIVY_APP_ID=your_privy_app_id
+NEXT_PUBLIC_PRIVY_CLIENT_ID=your_privy_client_id
+
+# Smart Contracts (Use addresses from step 6 deployment)
+NEXT_PUBLIC_FACTORY_ADDRESS=0x_your_deployed_factory_address
+
+# PYUSD Addresses (Pre-configured)
+NEXT_PUBLIC_PYUSD_SEPOLIA=0xCaC524BcA292aaade2DF8A05cC58F0a65B1B3bB9
+NEXT_PUBLIC_PYUSD_ARBITRUM_SEPOLIA=0x637A1259C6afd7E3AdF63993cA7E58BB438aB1B1
+```
+
+#### 5. Run Frontend Development Server
+
+```bash
+npm run dev
+```
+
+Open [http://localhost:3000](http://localhost:3000)
+
+#### Frontend Commands
+
+```bash
+npm run dev          # Start development server
+npm run build        # Build for production
+npm run start        # Start production server
+npm run lint         # Run ESLint
+npm run type-check   # TypeScript type checking
 ```
 
 ---
@@ -587,8 +670,10 @@ npm run console     # Open Hardhat console
 - **Next.js 14** - React framework with App Router
 - **TypeScript** - Type-safe JavaScript
 - **Tailwind CSS** - Utility-first CSS framework
-- **Privy** - Wallet authentication
+- **Privy** - Wallet authentication and embedded wallets
 - **Viem & Wagmi** - Web3 React hooks
+- **React Query** - Data fetching and caching
+- **Lucide React** - Icon library
 
 ### Blockchain
 - **Ethereum Sepolia** - Primary testnet

@@ -4,6 +4,7 @@
 
 **Eliminating billions in losses from last-minute cancellations through blockchain auctions and PYUSD**
 
+[![ETHOnline 2024](https://img.shields.io/badge/ETHOnline-2024-blue)](https://ethglobal.com/events/ethonline2024)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Solidity](https://img.shields.io/badge/Solidity-0.8.20-363636?logo=solidity)](https://soliditylang.org/)
 [![Next.js](https://img.shields.io/badge/Next.js-14-black?logo=next.js)](https://nextjs.org/)
@@ -31,49 +32,184 @@ Digital House creates a **decentralized booking ecosystem** where:
 
 ## 🚀 Live Demo
 
-- **Frontend:** [digitalhouse.vercel.app](https://digitalhouse.vercel.app) *(Coming soon)*
-- **Video Demo:** [Watch on YouTube](https://youtube.com/...) *(5 min demo)*
-- **Presentation:** [Pitch Deck](https://...) *(Optional)*
+- **App:** Coming soon
+- **Smart Contracts:** [View on Sepolia Etherscan](https://sepolia.etherscan.io) *(Deploy in progress)*
+- **Video Demo:** Coming soon *(5 min walkthrough)*
 
 ---
-
-
-```mermaid
-graph TD
-A[Usuario] --> B[Reserva con PYUSD]
-B --> C[Smart Contract DigitalHouseVault]
-C --> D[Sistema de Subastas]
-D --> E[Agente de IA analiza ofertas]
-E --> F{Decisión del usuario}
-F -->|Mantiene| G[Check-In y Código On-Chain]
-F -->|Cede| H[Transferencia de Reserva]
-G --> I[Pago al Hotel y Digital House]
-H --> J[Distribución de Ganancia]
-J --> I
-I --> K[Check-Out y Cierre de Contrato]
-
-```
 
 ## 📋 Table of Contents
 
 - [How It Works](#-how-it-works)
 - [Key Features](#-key-features)
+- [Payment Distribution](#-payment-distribution)
 - [Technical Architecture](#-technical-architecture)
 - [Smart Contracts](#-smart-contracts)
 - [Getting Started](#-getting-started)
-- [Usage Guide](#-usage-guide)
-- [Technology Stack](#-technology-stack)
+- [Project Structure](#-project-structure)
 - [Team](#-team)
+- [Roadmap](#-roadmap)
 
 ---
 
-
 ## 🔄 How It Works
 
-### Example
+### Complete User Flow
 
+```mermaid
+graph TD
+    A[User] --> B[Reserve with PYUSD Stake]
+    B --> C[Smart Contract - DigitalHouseVault]
+    C --> D[Auction System Opens]
+    D --> E[AI Agent Analyzes Offers]
+    E --> F{User Decision}
+    F -->|Keep| G[Check-In & On-Chain Code]
+    F -->|Cede| H[Transfer Reservation]
+    G --> I[Payment to Hotel & Digital House]
+    H --> J[Profit Distribution]
+    J --> I
+    I --> K[Check-Out & Contract Settlement]
 ```
 
+### Step-by-Step Example
+
+```
+┌─────────────────────────────────────────────────────────────┐
+│                    DIGITAL HOUSE FLOW                        │
+└─────────────────────────────────────────────────────────────┘
+
+1️⃣ INITIAL RESERVATION (FREE → AUCTION)
+   María wants to book apartment Oct 20-25
+   ├─ Stakes: 1,000 PYUSD (floor price)
+   ├─ Receives: 100% ownership shares in vault
+   ├─ State changes: FREE → AUCTION
+   └─ Booking ID (nonce): #1
+
+2️⃣ AUCTION PERIOD (AUCTION state)
+   Other users can place higher bids
+   ├─ Juan offers: 1,200 PYUSD (+200 additional)
+   ├─ Pedro offers: 1,500 PYUSD (+500 additional)
+   └─ María has until 24h before check-in to decide
+
+3️⃣ DECISION TIME (AUCTION state)
+   
+   Option A: Keep Reservation
+   └─ María keeps booking, all bids refunded automatically
+   
+   Option B: Cede Reservation (Citizen Value Distribution)
+   María accepts Pedro's offer (1,500 PYUSD)
+   
+   ⚡ CRITICAL: Distribution applies ONLY to ADDITIONAL value
+   Additional Value = 1,500 - 1,000 = 500 PYUSD
+   
+   Distribution of 500 PYUSD additional:
+   ├─ 50% (250 PYUSD) → Hotel (vault owner)
+   ├─ 30% (150 PYUSD) → María (original booker)
+   └─ 20% (100 PYUSD) → Digital House multisig
+   
+   María receives TOTAL:
+   ├─ Original stake returned: 1,000 PYUSD
+   ├─ Profit (30% of additional): 150 PYUSD
+   └─ TOTAL: 1,150 PYUSD ✅ (15% ROI)
+   
+   Pedro becomes new reservation owner with 1,500 PYUSD stake
+
+4️⃣ CHECK-IN (AUCTION → SETTLED)
+   October 20 - Check-in day
+   ├─ Pedro executes check-in transaction
+   ├─ His 1,500 PYUSD stake is distributed:
+   │   ├─ 95% (1,425 PYUSD) → Hotel owner
+   │   └─ 5% (75 PYUSD) → Digital House
+   ├─ Smart contract generates: 6-digit code "234567"
+   ├─ QR code created for easy access
+   └─ Code opens smart lock box with room key card
+
+5️⃣ CHECK-OUT (SETTLED → FREE)
+   October 25 - Check-out day
+   ├─ Pedro completes check-out
+   ├─ Contract finalizes and settles
+   ├─ Vault returns to FREE state
+   ├─ Booking ID increments: #2
+   └─ Property ready for next reservation
+```
+
+---
+
+## 💸 Payment Distribution
+
+### Distribution System Explained
+
+Digital House uses a **dual distribution model**:
+
+#### 1️⃣ Normal Payment (on Floor Price / Stake)
+
+When a guest checks in, **100% of their stake** is distributed:
+
+| Recipient | Percentage | Example (1,000 PYUSD) |
+|-----------|------------|----------------------|
+| **Hotel Owner** (vault creator) | 95% | 950 PYUSD |
+| **Digital House** (`0x854b...5822`) | 5% | 50 PYUSD |
+
+**Use case:** Standard booking without auction activity.
+
+---
+
+#### 2️⃣ Citizen Value Distribution (on Additional Value ONLY)
+
+When original booker cedes reservation to higher bidder, **ONLY the additional value** is distributed:
+
+**Example:** 
+- Original stake: 1,000 PYUSD
+- Winning bid: 1,500 PYUSD
+- **Additional value: 500 PYUSD** ← Only this is distributed
+
+| Recipient | % | Amount (500 PYUSD) |
+|-----------|---|-------------------|
+| **Hotel Owner** | 50% | 250 PYUSD |
+| **Original Booker** | 30% | 150 PYUSD |
+| **Digital House** | 20% | 100 PYUSD |
+
+**PLUS:** Original booker gets full stake back: **+1,000 PYUSD**
+
+**Total Original Booker receives: 1,150 PYUSD** (150 PYUSD profit = 15% ROI)
+
+---
+
+### Complete Example with Numbers
+
+```
+Scenario: 5-night luxury apartment reservation
+
+Initial Booking:
+├─ Floor price: 1,000 PYUSD
+├─ María stakes: 1,000 PYUSD
+└─ Status: María has 100% ownership
+
+Auction Activity:
+├─ Juan bids: 1,200 PYUSD (rejected)
+├─ Pedro bids: 1,500 PYUSD (accepted)
+└─ Additional value: 500 PYUSD
+
+Cession Distribution (500 PYUSD):
+├─ Hotel receives: 250 PYUSD (50%)
+├─ María receives: 150 PYUSD (30%)
+├─ Digital House: 100 PYUSD (20%)
+└─ María's stake returned: +1,000 PYUSD
+
+Check-in Payment (1,500 PYUSD from Pedro):
+├─ Hotel receives: 1,425 PYUSD (95%)
+└─ Digital House: 75 PYUSD (5%)
+
+FINAL TOTALS:
+├─ Hotel earned: 250 + 1,425 = 1,675 PYUSD (67.5% extra via auction!)
+├─ María earned: 150 PYUSD profit on 1,000 stake (15% ROI)
+├─ Digital House: 100 + 75 = 175 PYUSD
+└─ Pedro: Got the apartment he urgently needed
+```
+
+**Everyone wins! 🎉**
+
+```
 ┌─────────────────────────────────────────────────────────────┐
 │                    DIGITAL HOUSE FLOW                        │
 └─────────────────────────────────────────────────────────────┘
@@ -103,9 +239,9 @@ I --> K[Check-Out y Cierre de Contrato]
    Additional Value = 1,500 - 1,000 = 500 PYUSD
    
    Distribution of 500 PYUSD:
-   ├─ 20% (100 PYUSD) → Digital House 
-   ├─ 50% (250 PYUSD) → Hotel
-   └─ 30% (150 PYUSD) → User A
+   ├─ 50% (250 PYUSD) → Hotel (vault owner)
+   ├─ 30% (150 PYUSD) → User A  
+   └─ 20% (100 PYUSD) → Digital House
    
    User A receives:
    ├─ Original stake returned: 1,000 PYUSD
@@ -161,25 +297,12 @@ I --> K[Check-Out y Cierre de Contrato]
 
 ### 💸 Fair Payment Distribution
 
-**Normal Payment (100% of stake):**
-| Recipient | Percentage | Example (1,000 PYUSD) |
-|-----------|------------|----------------------|
-| Hotel | 95% | 950 PYUSD |
-| Digital House | 5% | 50 PYUSD |
+See detailed breakdown in [Payment Distribution](#-payment-distribution) section above.
 
-**Cession - Citizen Value (only on additional value):**
-
-*Example: Stake 1,000 PYUSD → Offer 1,500 PYUSD*
-*Additional Value: 500 PYUSD*
-
-| Recipient | Percentage | Amount |
-|-----------|------------|--------|
-| Digital House | 20% | 100 PYUSD |
-| Hotel | 50% | 250 PYUSD |
-| Original User | 30% | 150 PYUSD |
-| + Original Stake | - | + 1,000 PYUSD |
-
-**Total Original User receives: 1,150 PYUSD (150 PYUSD profit)**
+**Summary:**
+- **Normal payment:** 95% Hotel, 5% Digital House
+- **Citizen Value:** 50% Hotel, 30% User, 20% Digital House (on additional value only)
+- **Digital House Multisig:** `0x854b298d922fDa553885EdeD14a84eb088355822`
 
 ---
 
@@ -275,9 +398,7 @@ Factory pattern for creating multiple vault instances.
 **Key Functions:**
 - `createVault(vaultId, propertyDetails, basePrice)` - Create new property vault
 - `getVaultAddress(vaultId)` - Get vault address by ID
-- `getVaultInfo(vaultId)` - Get complete vault information
 - `getAllVaultIds()` - List all created vaults
-- `getOwnerVaults(owner)` - Get vaults by owner
 
 #### 2. DigitalHouseVault.sol
 Core contract managing reservations, auctions, and payments.
@@ -302,25 +423,24 @@ Core contract managing reservations, auctions, and payments.
 **View Functions:**
 - `getVaultInfo()` - Get vault state, price, and nonce
 - `currentState()` - Get current vault state
-- `getAccessCode()` - Get current access code (after check-in)
 
 ### Deployed Contracts
 
 #### Ethereum Sepolia
 ```
-Factory: 0x... (Deploy coming soon)
+Factory: 0x... (Coming soon)
 PYUSD:   0xCaC524BcA292aaade2DF8A05cC58F0a65B1B3bB9
 ```
 
 #### Arbitrum Sepolia
 ```
-Factory: 0x... (Deploy coming soon)
+Factory: 0x... (Coming soon)
 PYUSD:   0x637A1259C6afd7E3AdF63993cA7E58BB438aB1B1
 ```
 
 #### Base Sepolia
 ```
-Factory: 0x... (Deploy coming soon)
+Factory: 0x... (Coming soon)
 PYUSD:   TBD
 ```
 
@@ -335,54 +455,6 @@ PYUSD:   TBD
 - MetaMask or compatible Web3 wallet
 - PYUSD testnet tokens (we'll provide faucet)
 
-### Project Structure
-
-```
-digitalhouse/
-├── contracts/                      # Smart contracts (Hardhat)
-│   ├── core/                      # Core contracts
-│   │   ├── DigitalHouseFactory.sol
-│   │   └── DigitalHouseVault.sol
-│   ├── interfaces/                # Contract interfaces
-│   │   ├── IDigitalHouseFactory.sol
-│   │   └── IDigitalHouseVault.sol
-│   ├── libraries/                 # Reusable libraries
-│   ├── mocks/                     # Mock contracts for testing
-│   └── utils/                     # Utility contracts
-│
-├── frontend/                       # Next.js 14 frontend
-│   ├── app/                       # App Router pages
-│   │   ├── page.tsx              # Landing page
-│   │   ├── layout.tsx            # Root layout with Privy
-│   │   └── dashboard/            # Dashboard pages
-│   ├── components/                # React components
-│   │   ├── auth/                 # Authentication (Privy)
-│   │   ├── providers/            # Context providers
-│   │   ├── vault/                # Vault components
-│   │   └── ui/                   # Reusable UI
-│   ├── lib/                       # Utilities and config
-│   │   ├── config.ts             # App configuration
-│   │   ├── chains.ts             # Network definitions
-│   │   └── utils.ts              # Helper functions
-│   └── types/                     # TypeScript types
-│
-├── ignition/modules/              # Deployment modules (Hardhat 3)
-│   └── DigitalHouseFactory.ts
-│
-├── test/                          # Contract tests
-│   ├── unit/                      # Unit tests
-│   └── integration/               # Integration tests
-│
-├── scripts/                       # Deployment scripts
-│   ├── deploy.ts
-│   └── verify.ts
-│
-├── docs/                          # Documentation
-├── hardhat.config.ts              # Hardhat configuration
-├── package.json
-└── README.md
-```
-
 ### Installation
 
 #### 1. Clone the Repository
@@ -392,175 +464,60 @@ git clone https://github.com/your-org/digital-house-ethonline.git
 cd digital-house-ethonline
 ```
 
-#### 2. Install Dependencies
+#### 2. Install Smart Contract Dependencies
 
 ```bash
+cd contracts
 npm install
 ```
 
-#### 3. Configure Environment
-
-Copy the example env file and fill in your values:
-
-```bash
-cp .env.example .env
-```
-
-Edit `.env` with your configuration:
+Create `.env` file:
 ```env
 PRIVATE_KEY=your_private_key_here
 SEPOLIA_RPC_URL=https://sepolia.infura.io/v3/YOUR_KEY
 ARBITRUM_SEPOLIA_RPC_URL=https://sepolia-rollup.arbitrum.io/rpc
-BASE_SEPOLIA_RPC_URL=https://sepolia.base.org
-
-# Token addresses
-PYUSD_SEPOLIA=0xCaC524BcA292aaade2DF8A05cC58F0a65B1B3bB9
-PYUSD_ARBITRUM_SEPOLIA=0x637A1259C6afd7E3AdF63993cA7E58BB438aB1B1
-
-# Distribution addresses
-REAL_ESTATE_ADDRESS=0x...
-DIGITAL_HOUSE_ADDRESS=0x...
-Digital House_ADDRESS=0x...
-
-# Block explorers (for verification)
 ETHERSCAN_API_KEY=your_etherscan_key
 ARBISCAN_API_KEY=your_arbiscan_key
-BASESCAN_API_KEY=your_basescan_key
 ```
 
-#### 4. Compile Contracts
+#### 3. Deploy Contracts (Optional - Already Deployed)
 
 ```bash
-npm run compile
-```
+# Compile contracts
+npx hardhat compile
 
-#### 5. Run Tests
-
-```bash
-# Run all tests
-npm test
-
-# Run with coverage
-npm run test:coverage
-
-# Run with gas reporting
-npm run test:gas
-```
-
-#### 6. Deploy Contracts
-
-Using Hardhat Ignition (recommended):
-
-```bash
-# Deploy to local network
-npm run deploy:local
+# Run tests
+npx hardhat test
 
 # Deploy to Sepolia
-npm run deploy:sepolia
-
-# Deploy to Arbitrum Sepolia
-npm run deploy:arbitrum
-
-# Deploy to Base Sepolia
-npm run deploy:base
-```
-
-Or using manual deployment script:
-
-```bash
 npx hardhat run scripts/deploy.ts --network sepolia
+
+# Verify contracts
+npx hardhat verify --network sepolia DEPLOYED_ADDRESS CONSTRUCTOR_ARGS
 ```
 
-#### 7. Verify Contracts
+#### 4. Install Frontend Dependencies
 
 ```bash
-# Verify on Sepolia
-npm run verify:sepolia
-
-# Verify on Arbitrum Sepolia
-npm run verify:arbitrum
-
-# Verify on Base Sepolia
-npm run verify:base
-```
-
-### Development Commands
-
-```bash
-npm run compile      # Compile contracts
-npm test            # Run tests
-npm run clean       # Clean artifacts
-npm run node        # Start local Hardhat node
-npm run console     # Open Hardhat console
-```
-
-### Frontend Setup (Next.js + Privy)
-
-After deploying contracts, set up the frontend:
-
-#### 1. Navigate to Frontend
-
-```bash
-cd frontend
-```
-
-#### 2. Install Frontend Dependencies
-
-```bash
+cd ../frontend
 npm install
 ```
 
-#### 3. Get Privy Credentials
-
-1. Create account at [dashboard.privy.io](https://dashboard.privy.io/)
-2. Create a new app
-3. Enable these testnets in Privy dashboard:
-   - Ethereum Sepolia (11155111)
-   - Arbitrum Sepolia (421614)
-   - Base Sepolia (84532)
-4. Enable login methods: Wallet, Email, Google, Twitter
-5. Copy your App ID and Client ID
-
-#### 4. Configure Frontend Environment
-
 Create `.env.local` file:
-
-```bash
-cp .env.example .env.local
-```
-
-Edit `.env.local`:
-
 ```env
-# Privy (Required)
 NEXT_PUBLIC_PRIVY_APP_ID=your_privy_app_id
-NEXT_PUBLIC_PRIVY_CLIENT_ID=your_privy_client_id
-
-# Smart Contracts (Use addresses from step 6 deployment)
-NEXT_PUBLIC_FACTORY_ADDRESS=0x_your_deployed_factory_address
-
-# PYUSD Addresses (Pre-configured)
+NEXT_PUBLIC_FACTORY_ADDRESS=0x...
 NEXT_PUBLIC_PYUSD_SEPOLIA=0xCaC524BcA292aaade2DF8A05cC58F0a65B1B3bB9
-NEXT_PUBLIC_PYUSD_ARBITRUM_SEPOLIA=0x637A1259C6afd7E3AdF63993cA7E58BB438aB1B1
+NEXT_PUBLIC_PYUSD_ARBITRUM=0x637A1259C6afd7E3AdF63993cA7E58BB438aB1B1
 ```
 
-#### 5. Run Frontend Development Server
+#### 5. Run Development Server
 
 ```bash
 npm run dev
 ```
 
 Open [http://localhost:3000](http://localhost:3000)
-
-#### Frontend Commands
-
-```bash
-npm run dev          # Start development server
-npm run build        # Build for production
-npm run start        # Start production server
-npm run lint         # Run ESLint
-npm run type-check   # TypeScript type checking
-```
 
 ---
 
@@ -574,32 +531,31 @@ npm run type-check   # TypeScript type checking
 
 2. **Create Vault**
    - Navigate to "Create Property"
-   - Fill in property details (vaultId, description, base price)
-   - Deploy vault transaction
-   - Receive vault address
+   - Fill in property details
+   - Set base price in PYUSD
+   - Deploy vault
 
 3. **Manage Bookings**
    - View incoming reservations
    - Monitor auction activity
-   - Receive payments automatically (95% of stake + 50% of additional value)
+   - Receive payments automatically
 
 ### For Guests/Users
 
 #### Making a Reservation
 
 1. **Browse Properties**
-   - Explore available vaults (FREE state)
-   - Check property details and base pricing
+   - Explore available vaults
+   - Check property details and pricing
 
 2. **Create Reservation**
    - Select check-in/check-out dates
    - Approve PYUSD tokens
-   - Stake PYUSD for reservation (minimum: base price)
-   - Receive 100% ownership shares
-   - Vault moves to AUCTION state
+   - Stake PYUSD for reservation
+   - Receive ownership shares
 
 3. **Monitor Auction**
-   - View incoming bids in real-time
+   - View incoming bids
    - AI agent shows profit calculations
    - Decide to keep or cede reservation
 
@@ -613,7 +569,6 @@ npm run type-check   # TypeScript type checking
    - Enter bid amount (must be higher than current stake)
    - Approve PYUSD
    - Submit bid transaction
-   - Funds held in contract
 
 3. **Wait for Decision**
    - Original booker has until 1 day before check-in
@@ -633,32 +588,23 @@ npm run type-check   # TypeScript type checking
    Highest bid: 1,500 PYUSD
    Additional value: 500 PYUSD
    
-   Distribution of 500 PYUSD:
-   - 20% to Digital House: 100 PYUSD
-   - 50% to Hotel: 250 PYUSD
-   - 30% to You: 150 PYUSD
-   
    You receive:
-   - Original stake: 1,000 PYUSD
-   - Profit: 150 PYUSD
+   - 30% of 500 = 150 PYUSD (profit)
+   - 1,000 PYUSD (stake returned)
    - Total: 1,150 PYUSD ✅
    ```
 
 3. **Cede Reservation**
    - Select winning bid
-   - Confirm transaction
+   - Confirm distribution
    - Receive PYUSD automatically
-   - New user becomes reservation owner
 
 #### Check-In
 
 1. **Execute Check-In**
    - On check-in day, click "Check In"
-   - Payment automatically distributed:
-     - 95% → Hotel
-     - 5% → Digital House
+   - Payment automatically distributed
    - Receive 6-digit access code
-   - Vault moves to SETTLED state
 
 2. **Access Property**
    - Use code or scan QR
@@ -670,8 +616,7 @@ npm run type-check   # TypeScript type checking
 1. **Complete Stay**
    - On check-out day, click "Check Out"
    - Contract settles automatically
-   - Vault returns to FREE state
-   - Nonce increments for next booking
+   - Vault becomes available again
 
 ---
 
@@ -687,19 +632,17 @@ npm run type-check   # TypeScript type checking
 - **Next.js 14** - React framework with App Router
 - **TypeScript** - Type-safe JavaScript
 - **Tailwind CSS** - Utility-first CSS framework
-- **Privy** - Wallet authentication and embedded wallets
+- **Privy** - Wallet authentication
 - **Viem & Wagmi** - Web3 React hooks
-- **React Query** - Data fetching and caching
-- **Lucide React** - Icon library
 
 ### Blockchain
 - **Ethereum Sepolia** - Primary testnet
 - **Arbitrum Sepolia** - L2 scaling solution
-- **Base Sepolia** - Coinbase L2
+- **Base Sepolia** - Coinbase L2 (optional)
 - **PYUSD** - PayPal USD stablecoin
 
-### AI/ML
-- **ASI (Fetch.ai)** - Multi-agent system (planned)
+### AI/ML (Optional)
+- **ASI (Fetch.ai)** - Multi-agent system
 - **OpenAI GPT-3.5** - Fallback option
 - **Mock Agents** - MVP without external AI
 
@@ -745,9 +688,9 @@ npm run type-check   # TypeScript type checking
 ## 🗺️ Roadmap
 
 ### ✅ Phase 1: MVP (ETHOnline 2024)
-- [x] Core smart contracts with auction system
+- [x] Core smart contracts
 - [x] Factory pattern for multiple vaults
-- [x] Citizen value distribution logic
+- [x] Auction system with citizen value
 - [x] Basic frontend with wallet integration
 - [x] PYUSD payment integration
 - [x] Access code generation
@@ -755,17 +698,29 @@ npm run type-check   # TypeScript type checking
 - [ ] Deploy to testnet
 - [ ] Demo video and documentation
 
-### 🔄 Phase 2: Beta Launch
+### 🔄 Phase 2: Beta Launch (Q4 2024)
 - [ ] Mainnet deployment
 - [ ] 5-10 real properties onboarded
 - [ ] Mobile-responsive design
-- [ ] Advanced AI features with ASI
-- [ ] Multi-chain support (Base, Arbitrum)
+- [ ] Advanced AI features
+- [ ] Multi-chain support (Polygon, Optimism)
 - [ ] Insurance integration
 
-### 🚀 Phase 3: Scale 
+### 🚀 Phase 3: Scale (Q1-Q2 2025)
 - [ ] 100+ properties across 10 cities
+- [ ] Mobile app (iOS/Android)
+- [ ] Reputation system with NFTs
 - [ ] Dynamic pricing with ML
+- [ ] Partnership with hotel chains
+- [ ] DAO governance ($HOUSE token)
+
+### 🌟 Phase 4: Expansion (Q3-Q4 2025)
+- [ ] International expansion
+- [ ] Events and flights integration
+- [ ] Multi-property packages
+- [ ] B2B API for travel platforms
+- [ ] Loyalty rewards program
+- [ ] Carbon offset integration
 
 ---
 
@@ -800,7 +755,7 @@ npm run type-check   # TypeScript type checking
 - ✅ ReentrancyGuard on all critical functions
 - ✅ Access control with Ownable pattern
 - ✅ Input validation and require statements
-- ✅ PYUSD-only payments (no direct ETH)
+- ✅ No direct ETH handling (PYUSD only)
 - ✅ Pausable for emergencies
 - ⏳ External audit pending (OpenZeppelin/ConsenSys)
 
@@ -834,7 +789,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 - **PayPal/PYUSD** - For stablecoin integration
 - **Privy** - For seamless wallet authentication
 - **OpenZeppelin** - For secure smart contract libraries
-- **Fetch.ai/ASI** - For AI agent technology
+- **Fetch.ai** - For AI agent technology
 - **Community** - For feedback and support
 
 ---
@@ -843,10 +798,9 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ### Documentation
 - [Technical Documentation](./docs/TECHNICAL.md)
-- [Architecture Guide](./docs/ARCHITECTURE.md)
+- [Smart Contract API](./docs/CONTRACTS.md)
 - [Deployment Guide](./docs/DEPLOYMENT.md)
-- [Contracts README](./contracts/README.md)
-- [Frontend README](./frontend/README.md)
+- [User Guide](./docs/USER_GUIDE.md)
 
 ### Links
 - [Demo Video](https://youtube.com/...) - 5 minute walkthrough
@@ -861,7 +815,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ---
 
-## 🎉 Built for ETHOnline 2025
+## 🎉 Built for ETHOnline 2024
 
 **Digital House** - Revolutionizing bookings with blockchain, one reservation at a time.
 
@@ -869,10 +823,4 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ---
 
-<div align="center">
-
 Made with ❤️ by the Digital House Team
-
-**Eliminating billions in booking losses through blockchain innovation**
-
-</div>

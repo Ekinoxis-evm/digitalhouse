@@ -38,6 +38,18 @@ Digital House creates a **decentralized booking ecosystem** where:
 ---
 
 
+```mermaid
+graph TD
+    A[Webhook Received] --> B[Extract User ID]
+    B --> C[Apply FilterMessageMozart]
+    C -->|Blocked| H[Set mozart_sent=false]
+    C -->|Allowed| I[Set mozart_sent=true]
+    H --> J[Persist Event]
+    I --> K[Send to Mozart IA]
+    K --> J[Persist Event]
+
+``
+
 ## 📋 Table of Contents
 
 - [How It Works](#-how-it-works)
@@ -48,15 +60,14 @@ Digital House creates a **decentralized booking ecosystem** where:
 - [Usage Guide](#-usage-guide)
 - [Technology Stack](#-technology-stack)
 - [Team](#-team)
-- [Roadmap](#-roadmap)
 
 ---
+```
 
 ## 🔄 How It Works
 
-### The Complete Flow
+### Example
 
-```
 ┌─────────────────────────────────────────────────────────────┐
 │                    DIGITAL HOUSE FLOW                        │
 └─────────────────────────────────────────────────────────────┘

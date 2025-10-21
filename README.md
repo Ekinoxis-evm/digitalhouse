@@ -43,7 +43,7 @@ graph TD
 A[Usuario] --> B[Reserva con PYUSD]
 B --> C[Smart Contract DigitalHouseVault]
 C --> D[Sistema de Subastas]
-D --> E[Agente de IA analiza ofertas]
+D --> E[Agente de IA Asiste a Gestionar ofertas]
 E --> F{Decisión del usuario}
 F -->|Mantiene| G[Check-In y Código On-Chain]
 F -->|Cede| H[Transferencia de Reserva]

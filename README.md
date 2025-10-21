@@ -45,8 +45,8 @@ B --> C[Smart Contract DigitalHouseVault]
 C --> D[Sistema de Subastas]
 D --> E[Agente de IA Asiste a Gestionar ofertas]
 E --> F{Decisión del usuario}
-F -->|Mantiene| G[Check-In y Código On-Chain]
-F -->|Cede| H[Transferencia de Reserva]
+F --> Mantiene  G[Check-In y Código On-Chain]
+F --> Cede  H[Transferencia de Reserva]
 G --> I[Pago al Hotel y Digital House]
 H --> J[Distribución de Ganancia]
 J --> I
@@ -79,7 +79,7 @@ flowchart TD
     A1[1️⃣ INITIAL RESERVATION\nState: FREE → AUCTION]
     A1 --> A2[User A stakes 1000 PYUSD]
     A2 --> A3[Receives 100% ownership shares in vault]
-    A3 --> A4[Reservation Oct 20-25 | Nonce = 1]
+    A3 --> A4[Reservation Oct 20-25   Nonce = 1]
 
     %% ===============================
     %% 2️⃣ AUCTION SYSTEM
@@ -93,8 +93,8 @@ flowchart TD
     %% 3️⃣ DECISION
     %% ===============================
     B4 --> C1[3️⃣ DECISION PHASE\nState: AUCTION]
-    C1 -->|Option A: Keep| C2[Keep reservation\nRefund all bids]
-    C1 -->|Option B: Cede| C3[Cede reservation to User C\n(1500 PYUSD offer)]
+    C1 --> Option A: Keep  C2[Keep reservation\nRefund all bids]
+    C1 --> Option B: Cede  C3[Cede reservation to User C\n(1500 PYUSD offer)]
 
     %% --- VALUE DISTRIBUTION ---
     C3 --> D1[Additional Value = 1500 - 1000 = 500 PYUSD]
@@ -218,22 +218,22 @@ flowchart TD
 ### 💸 Fair Payment Distribution
 
 **Normal Payment  100% of stake  :**
-| Recipient | Percentage | Example  1,000 PYUSD   |
-|-----------|------------|----------------------|
-| Hotel | 95% | 950 PYUSD |
-| Digital House | 5% | 50 PYUSD |
+  Recipient   Percentage   Example  1,000 PYUSD    
+ ----------- ------------ ---------------------- 
+  Hotel   95%   950 PYUSD  
+  Digital House   5%   50 PYUSD  
 
 **Cession - Citizen Value  only on additional value  :**
 
 *Example: Stake 1,000 PYUSD → Offer 1,500 PYUSD*
 *Additional Value: 500 PYUSD*
 
-| Recipient | Percentage | Amount |
-|-----------|------------|--------|
-| Digital House | 20% | 100 PYUSD |
-| Hotel | 50% | 250 PYUSD |
-| Original User | 30% | 150 PYUSD |
-| + Original Stake | - | + 1,000 PYUSD |
+  Recipient   Percentage   Amount  
+ ----------- ------------ -------- 
+  Digital House   20%   100 PYUSD  
+  Hotel   50%   250 PYUSD  
+  Original User   30%   150 PYUSD  
+  + Original Stake   -   + 1,000 PYUSD  
 
 **Total Original User receives: 1,150 PYUSD  150 PYUSD profit  **
 
@@ -934,7 +934,7 @@ This project is licensed under the MIT License - see the [LICENSE] LICENSE   fil
 
 **Digital House** - Revolutionizing bookings with blockchain, one reservation at a time.
 
-[🚀 Try Demo] https://digitalhouse.vercel.app   | [📺 Watch Video] https://youtube.com/...   | [💬 Join Discord] https://discord.gg/...  
+[🚀 Try Demo] https://digitalhouse.vercel.app     [📺 Watch Video] https://youtube.com/...     [💬 Join Discord] https://discord.gg/...  
 
 ---
 

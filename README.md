@@ -67,72 +67,66 @@ I --> K[Check-Out y Cierre de Contrato]
 
 ---
 
-
-## 🔄 How It Works
+## 🔄 DIGITAL HOUSE FLOW — Modular Overview
 
 ```mermaid
 flowchart TD
 
-%% --- FLUJO PRINCIPAL DIGITAL HOUSE ---
-A[🏁 INITIAL RESERVATION<br/> FREE → AUCTION  ] --> B[⚖️ AUCTION SYSTEM<br/> AUCTION  ]
-B --> C[🧭 DECISION<br/> KEEP or CEDE  ]
-C -->|Keep Reservation| D[🏠 CHECK-IN<br/> AUCTION → SETTLED  ]
-C -->|Cede Reservation| E[💰 DISTRIBUTION OF VALUE]
-E --> D
-D --> F[🚪 CHECK-OUT<br/> SETTLED → FREE  ]
-
-%% --- DETALLES DE CADA ETAPA ---
-subgraph Detalles
-    A1["User A stakes 1,000 PYUSD → 100% ownership  vault shares  "]
-    A2["State: AUCTION | Nonce: 1"]
-    A --> A1 --> A2
-    
-    B1["Other users can bid  User B: 1,200 PYUSD / User C: 1,500 PYUSD  "]
-    B2["User A decides until 1 day before check-in"]
-    B --> B1 --> B2
-
-    C1["If KEEP → Bids refunded"]
-    C2["If CEDE → Highest bidder wins reservation"]
-    C --> C1
-    C --> C2
-
-    E1["Additional Value = 1,500 - 1,000 = 500 PYUSD"]
-    E2["Distribution: 20% DH | 50% Hotel | 30% User A"]
-    E3["User A total = 1,150 PYUSD  original + profit  "]
-    E --> E1 --> E2 --> E3
-
-    D1["Check-in triggers payment split: 95% Hotel | 5% DH"]
-    D2["Generates 6-digit on-chain code: 234567"]
-    D --> D1 --> D2
-
-    F1["Contract settles → Vault FREE"]
-    F2["Nonce increments: +1"]
-    F --> F1 --> F2
+%% === MÓDULO 1: RESERVATION ===
+subgraph MODULE_1["1️⃣ Reservation Phase"]
+    A1[User A stakes 1,000 PYUSD]
+    A2[Vault mints ownership shares]
+    A3[State changes → AUCTION]
+    A1 --> A2 --> A3
 end
 
-%% --- CONTRATOS INTELIGENTES Y ARQUITECTURA ---
-subgraph Smart_Contracts["⚙️ Smart Contract Architecture"]
-    SC1[🪙 DigitalHouseVault<br/>• Manages stakes & ownership<br/>• Tracks state  FREE/AUCTION/SETTLED  ]
-    SC2[🏛️ AuctionManager<br/>• Receives bids<br/>• Handles time windows & refunds]
-    SC3[📜 SettlementAgent<br/>• Executes check-in/check-out<br/>• Distributes PYUSD<br/>• Emits receipts]
+%% === MÓDULO 2: AUCTION ===
+subgraph MODULE_2["2️⃣ Auction Phase"]
+    B1[Users B and C place bids]
+    B2[Highest bid = 1,500 PYUSD]
+    B3[User A decides before check-in]
+    MODULE_1 --> B1 --> B2 --> B3
+end
+
+%% === MÓDULO 3: DECISION ===
+subgraph MODULE_3["3️⃣ Decision Phase"]
+    C1{Keep or Cede?}
+    C1 -->|Keep| C2[Keep Reservation → Refund Bids]
+    C1 -->|Cede| C3[Cede Reservation → Value Distribution]
+    MODULE_2 --> C1
+end
+
+%% === MÓDULO 4: DISTRIBUTION ===
+subgraph MODULE_4["4️⃣ Distribution Phase"]
+    D1[Additional Value = 500 PYUSD]
+    D2[20% Digital House]
+    D3[50% Hotel]
+    D4[30% User A → +150 PYUSD profit]
+    C3 --> D1 --> D2 --> D3 --> D4
+end
+
+%% === MÓDULO 5: SETTLEMENT ===
+subgraph MODULE_5["5️⃣ Settlement Phase"]
+    E1[Check-In → Payment Split (95% Hotel, 5% DH)]
+    E2[Generates 6-digit code on-chain]
+    E3[Check-Out → Vault resets to FREE]
+    D4 --> E1 --> E2 --> E3
+end
+
+%% === CONTRATOS ===
+subgraph SMART_CONTRACTS["⚙️ Smart Contracts"]
+    SC1[DigitalHouseVault - Manages stakes and states]
+    SC2[AuctionManager - Handles bids and refunds]
+    SC3[SettlementAgent - Executes payments and code generation]
     SC1 --> SC2 --> SC3
 end
 
-%% --- INTERACCIÓN ENTRE ACTORES Y CONTRATOS ---
-UA[👤 User A] -->|Stake & Decision| SC1
-UB[👥 Bidders  B, C  ] -->|Submit Bids| SC2
-AI[🤖 AI Agent] -->|Analyzes Offers| SC2
-DH[🏗️ Digital House Protocol] -->|Receives Fee  20%  | SC3
-HTL[🏨 Hotel] -->|Receives Payment  50–95%  | SC3
-VAULT[💼 Vault State Machine] -->|Manages Ownership| SC1
-
-%% --- CONEXIONES ENTRE FLUJO Y CONTRATOS ---
-A -. interacts with .-> SC1
-B -. handled by .-> SC2
-D -. executed by .-> SC3
-E -. distributes via .-> SC3
-
-```
+%% === CONEXIONES ENTRE MÓDULOS Y CONTRATOS ===
+MODULE_1 -. uses .-> SC1
+MODULE_2 -. handled by .-> SC2
+MODULE_3 -. logic in .-> SC2
+MODULE_4 -. executed by .-> SC3
+MODULE_5 -. finalized by .-> SC3
 
 ## 🔄 How It Works
 ### Example

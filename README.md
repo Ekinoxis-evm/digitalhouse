@@ -128,10 +128,10 @@ MODULE_3 -. logic in .-> SC2
 MODULE_4 -. executed by .-> SC3
 MODULE_5 -. finalized by .-> SC3
 
-## 🔄 How It Works
-### Example
 ```
 
+## 🔄 How It Works
+### Example
 ┌─────────────────────────────────────────────────────────────┐
 │                    DIGITAL HOUSE FLOW                        │
 └─────────────────────────────────────────────────────────────┘

@@ -67,65 +67,9 @@ I --> K[Check-Out y Cierre de Contrato]
 
 ---
 
-## 🔄 DIGITAL HOUSE FLOW — Modular Overview
 
 ## 🏠 DIGITAL HOUSE FLOW
 
-```mermaid
-flowchart TD
-    %% ===============================
-    %% 1️⃣ INITIAL RESERVATION
-    %% ===============================
-    A1[1️⃣ INITIAL RESERVATION\nState: FREE → AUCTION]
-    A1 --> A2[User A stakes 1000 PYUSD]
-    A2 --> A3[Receives 100% ownership shares in vault]
-    A3 --> A4[Reservation Oct 20-25   Nonce = 1]
-
-    %% ===============================
-    %% 2️⃣ AUCTION SYSTEM
-    %% ===============================
-    A4 --> B1[2️⃣ AUCTION SYSTEM\nState: AUCTION]
-    B1 --> B2[User B offers 1200 PYUSD]
-    B2 --> B3[User C offers 1500 PYUSD]
-    B3 --> B4[User A can decide until 1 day before check-in]
-
-    %% ===============================
-    %% 3️⃣ DECISION
-    %% ===============================
-    B4 --> C1[3️⃣ DECISION PHASE\nState: AUCTION]
-    C1 --> Option A: Keep  C2[Keep reservation\nRefund all bids]
-    C1 --> Option B: Cede  C3[Cede reservation to User C\n(1500 PYUSD offer)]
-
-    %% --- VALUE DISTRIBUTION ---
-    C3 --> D1[Additional Value = 1500 - 1000 = 500 PYUSD]
-    D1 --> D2[Distribution of 500 PYUSD]
-    D2 --> D3[20% (100 PYUSD) → Digital House]
-    D2 --> D4[50% (250 PYUSD) → Hotel]
-    D2 --> D5[30% (150 PYUSD) → User A]
-
-    D5 --> D6[User A receives 1150 PYUSD total\n(1000 stake + 150 profit)]
-    D6 --> D7[User C becomes new reservation owner\nwith 1500 PYUSD stake]
-
-    %% ===============================
-    %% 4️⃣ CHECK-IN
-    %% ===============================
-    D7 --> E1[4️⃣ CHECK-IN\nState: AUCTION → SETTLED]
-    E1 --> E2[User executes check-in on Oct 20]
-    E2 --> E3[Distribute PYUSD payment]
-    E3 --> E4[95% → Hotel / 5% → Digital House]
-    E4 --> E5[Generate access code: 234567]
-    E5 --> E6[Unlocks room access box]
-
-    %% ===============================
-    %% 5️⃣ CHECK-OUT
-    %% ===============================
-    E6 --> F1[5️⃣ CHECK-OUT\nState: SETTLED → FREE]
-    F1 --> F2[User executes check-out on Oct 25]
-    F2 --> F3[Contract settles]
-    F3 --> F4[Vault resets to FREE state]
-    F4 --> F5[Nonce increments to 2]
-
-```
 
 ```
 ## 🔄 How It Works

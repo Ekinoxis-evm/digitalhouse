@@ -318,6 +318,39 @@ PYUSD:   TBD
 - MetaMask or compatible Web3 wallet
 - PYUSD testnet tokens (we'll provide faucet)
 
+### Project Structure
+
+```
+digitalhouse/
+├── contracts/                      # Smart contracts Solidity
+│   ├── core/                      # Contratos principales
+│   │   ├── DigitalHouseFactory.sol
+│   │   └── DigitalHouseVault.sol
+│   ├── interfaces/                # Interfaces
+│   │   ├── IDigitalHouseFactory.sol
+│   │   └── IDigitalHouseVault.sol
+│   ├── libraries/                 # Librerías reutilizables
+│   ├── mocks/                     # Contratos mock para testing
+│   └── utils/                     # Utilidades
+│
+├── ignition/modules/              # Módulos de deployment (Hardhat 3)
+│   └── DigitalHouseFactory.ts
+│
+├── test/                          # Tests en TypeScript
+│   ├── unit/                      # Tests unitarios
+│   └── integration/               # Tests de integración
+│
+├── scripts/                       # Scripts de utilidad
+│   ├── deploy.ts                  # Deployment manual
+│   └── verify.ts                  # Verificación en exploradores
+│
+├── docs/                          # Documentación técnica
+├── hardhat.config.ts              # Configuración de Hardhat
+├── package.json
+├── tsconfig.json
+└── README.md
+```
+
 ### Installation
 
 #### 1. Clone the Repository
@@ -327,71 +360,107 @@ git clone https://github.com/your-org/digital-house-ethonline.git
 cd digital-house-ethonline
 ```
 
-#### 2. Install Smart Contract Dependencies
+#### 2. Install Dependencies
 
 ```bash
-cd contracts
 npm install
 ```
 
-Create `.env` file:
+#### 3. Configure Environment
+
+Copy the example env file and fill in your values:
+
+```bash
+cp .env.example .env
+```
+
+Edit `.env` with your configuration:
 ```env
 PRIVATE_KEY=your_private_key_here
 SEPOLIA_RPC_URL=https://sepolia.infura.io/v3/YOUR_KEY
 ARBITRUM_SEPOLIA_RPC_URL=https://sepolia-rollup.arbitrum.io/rpc
 BASE_SEPOLIA_RPC_URL=https://sepolia.base.org
 
-# Token and addresses
+# Token addresses
 PYUSD_SEPOLIA=0xCaC524BcA292aaade2DF8A05cC58F0a65B1B3bB9
-PYUSD_ARBITRUM=0x637A1259C6afd7E3AdF63993cA7E58BB438aB1B1
+PYUSD_ARBITRUM_SEPOLIA=0x637A1259C6afd7E3AdF63993cA7E58BB438aB1B1
+
+# Distribution addresses
 REAL_ESTATE_ADDRESS=0x...
 DIGITAL_HOUSE_ADDRESS=0x...
 CONVEXO_ADDRESS=0x...
 
-# Block explorers
+# Block explorers (for verification)
 ETHERSCAN_API_KEY=your_etherscan_key
 ARBISCAN_API_KEY=your_arbiscan_key
 BASESCAN_API_KEY=your_basescan_key
 ```
 
-#### 3. Deploy Contracts (Optional - Already Deployed)
+#### 4. Compile Contracts
 
 ```bash
-# Compile contracts
-npx hardhat compile
+npm run compile
+```
 
-# Run tests
-npx hardhat test
+#### 5. Run Tests
+
+```bash
+# Run all tests
+npm test
+
+# Run with coverage
+npm run test:coverage
+
+# Run with gas reporting
+npm run test:gas
+```
+
+#### 6. Deploy Contracts
+
+Using Hardhat Ignition (recommended):
+
+```bash
+# Deploy to local network
+npm run deploy:local
 
 # Deploy to Sepolia
+npm run deploy:sepolia
+
+# Deploy to Arbitrum Sepolia
+npm run deploy:arbitrum
+
+# Deploy to Base Sepolia
+npm run deploy:base
+```
+
+Or using manual deployment script:
+
+```bash
 npx hardhat run scripts/deploy.ts --network sepolia
-
-# Verify contracts
-npx hardhat verify --network sepolia DEPLOYED_ADDRESS CONSTRUCTOR_ARGS
 ```
 
-#### 4. Install Frontend Dependencies
+#### 7. Verify Contracts
 
 ```bash
-cd ../frontend
-npm install
+# Verify on Sepolia
+npm run verify:sepolia
+
+# Verify on Arbitrum Sepolia
+npm run verify:arbitrum
+
+# Verify on Base Sepolia
+npm run verify:base
 ```
 
-Create `.env.local` file:
-```env
-NEXT_PUBLIC_PRIVY_APP_ID=your_privy_app_id
-NEXT_PUBLIC_FACTORY_ADDRESS=0x...
-NEXT_PUBLIC_PYUSD_SEPOLIA=0xCaC524BcA292aaade2DF8A05cC58F0a65B1B3bB9
-NEXT_PUBLIC_PYUSD_ARBITRUM=0x637A1259C6afd7E3AdF63993cA7E58BB438aB1B1
-```
-
-#### 5. Run Development Server
+### Development Commands
 
 ```bash
-npm run dev
+npm run compile      # Compile contracts
+npm test            # Run tests
+npm run clean       # Clean artifacts
+npm run node        # Start local Hardhat node
+npm run console     # Open Hardhat console
 ```
-
-Open [http://localhost:3000](http://localhost:3000)
 
 ---
 

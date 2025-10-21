@@ -3,66 +3,83 @@ pragma solidity ^0.8.20;
 
 /**
  * @title IDigitalHouseVault
- * @dev Interface for Digital House Vault contract
+ * @dev Interface for Digital House Vault contract with auction system
  */
 interface IDigitalHouseVault {
-    // Enums
-    enum ReservationStatus {
-        Available,
-        Reserved,
-        CheckedIn,
-        CheckedOut,
-        Cancelled
-    }
 
-    // Structs
-    struct Property {
-        string location;
-        uint256 rooms;
-        uint256 squareMeters;
-        uint256 basePrice; // Base price per day in wei
-        address paymentToken; // Token address (0x0 for ETH)
+    // Estados del contrato
+    enum VaultState { FREE, AUCTION, SETTLED }
+
+    // Estructura de reserva
+    struct Reservation {
+        address booker;
+        uint256 stakeAmount;
+        uint256 shares;
+        uint256 checkInDate;
+        uint256 checkOutDate;
+        uint256 nonce;
         bool isActive;
     }
 
-    struct Reservation {
-        address tenant;
-        uint256 checkInDate;
-        uint256 checkOutDate;
-        uint256 totalPrice;
-        address paymentToken;
-        ReservationStatus status;
-        bool isPaid;
+    // Estructura de oferta en subasta
+    struct AuctionBid {
+        address bidder;
+        uint256 amount;
+        uint256 timestamp;
+        bool isActive;
     }
 
-    // Events
-    event PropertyCreated(uint256 indexed propertyId, string location, uint256 basePrice);
-    event ReservationCreated(uint256 indexed reservationId, uint256 indexed propertyId, address indexed tenant);
-    event CheckIn(uint256 indexed reservationId, uint256 timestamp);
-    event CheckOut(uint256 indexed reservationId, uint256 timestamp);
-    event PaymentReceived(uint256 indexed reservationId, address indexed payer, uint256 amount);
-    event ReservationCancelled(uint256 indexed reservationId);
-    event PriceUpdated(uint256 indexed propertyId, uint256 newPrice);
+    // Eventos
+    event ReservationCreated(address indexed booker, uint256 amount, uint256 checkInDate);
+    event BidPlaced(address indexed bidder, uint256 amount);
+    event BidWithdrawn(address indexed bidder, uint256 amount);
+    event ReservationCeded(address indexed originalBooker, address indexed newBooker, uint256 amount);
+    event CheckInCompleted(address indexed booker, string accessCode);
+    event CheckOutCompleted(address indexed booker, uint256 nonce);
 
-    // Functions
-    function createProperty(
-        string memory location,
-        uint256 rooms,
-        uint256 squareMeters,
-        uint256 basePrice,
-        address paymentToken
-    ) external returns (uint256);
-
+    // Funciones de gestión de reservas
     function createReservation(
-        uint256 propertyId,
-        uint256 checkInDate,
-        uint256 checkOutDate
-    ) external payable returns (uint256);
+        uint256 _stakeAmount,
+        uint256 _checkInDate,
+        uint256 _checkOutDate
+    ) external;
 
-    function checkIn(uint256 reservationId) external;
-    function checkOut(uint256 reservationId) external;
-    function cancelReservation(uint256 reservationId) external;
-    function getProperty(uint256 propertyId) external view returns (Property memory);
-    function getReservation(uint256 reservationId) external view returns (Reservation memory);
+    function cancelReservation() external;
+
+    function getCurrentReservation() external view returns (Reservation memory);
+
+    // Funciones de subasta
+    function placeBid(uint256 _bidAmount) external;
+
+    function withdrawBid(uint256 _bidIndex) external;
+
+    function cedeReservation(uint256 _bidIndex) external;
+
+    function getAuctionBids() external view returns (AuctionBid[] memory);
+
+    // Funciones de check-in/check-out
+    function checkIn() external;
+
+    function checkOut() external;
+
+    // Funciones de vista
+    function getVaultInfo() external view returns (
+        VaultState state,
+        uint256 price,
+        uint256 nonce
+    );
+
+    function currentState() external view returns (VaultState);
+
+    function getAccessCode() external view returns (string memory);
+
+    // Variables públicas
+    function vaultId() external view returns (string memory);
+    function propertyDetails() external view returns (string memory);
+    function basePrice() external view returns (uint256);
+    function currentNonce() external view returns (uint256);
+    function pyusdToken() external view returns (address);
+    function realEstateAddress() external view returns (address);
+    function digitalHouseAddress() external view returns (address);
+    function convexoAddress() external view returns (address);
 }
-

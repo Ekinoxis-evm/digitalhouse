@@ -85,7 +85,7 @@ Digital House creates a **decentralized booking ecosystem** where:
    Additional Value = 1,500 - 1,000 = 500 PYUSD
    
    Distribution of 500 PYUSD:
-   ├─ 20% (100 PYUSD) → Convexo
+   ├─ 20% (100 PYUSD) → Digital House 
    ├─ 50% (250 PYUSD) → Hotel
    └─ 30% (150 PYUSD) → User A
    
@@ -156,7 +156,7 @@ Digital House creates a **decentralized booking ecosystem** where:
 
 | Recipient | Percentage | Amount |
 |-----------|------------|--------|
-| Convexo | 20% | 100 PYUSD |
+| Digital House | 20% | 100 PYUSD |
 | Hotel | 50% | 250 PYUSD |
 | Original User | 30% | 150 PYUSD |
 | + Original Stake | - | + 1,000 PYUSD |
@@ -402,7 +402,7 @@ PYUSD_ARBITRUM_SEPOLIA=0x637A1259C6afd7E3AdF63993cA7E58BB438aB1B1
 # Distribution addresses
 REAL_ESTATE_ADDRESS=0x...
 DIGITAL_HOUSE_ADDRESS=0x...
-CONVEXO_ADDRESS=0x...
+Digital House_ADDRESS=0x...
 
 # Block explorers (for verification)
 ETHERSCAN_API_KEY=your_etherscan_key
@@ -616,7 +616,7 @@ npm run type-check   # TypeScript type checking
    Additional value: 500 PYUSD
    
    Distribution of 500 PYUSD:
-   - 20% to Convexo: 100 PYUSD
+   - 20% to Digital House: 100 PYUSD
    - 50% to Hotel: 250 PYUSD
    - 30% to You: 150 PYUSD
    

@@ -52,15 +52,6 @@ H --> J[Distribución de Ganancia]
 J --> I
 I --> K[Check-Out y Cierre de Contrato]
 
-%% Arquitectura Técnica Simplificada
-subgraph Arquitectura
-L[Frontend Next.js] --> M[Integración Web3 Viem Wagmi]
-M --> N[Contratos en Solidity]
-N --> O[Blockchain Ethereum Arbitrum Base]
-O --> P[Pago con PYUSD]
-N --> Q[Agente de IA ASI]
-end
-
 ```
 
 ## 📋 Table of Contents
@@ -192,6 +183,19 @@ end
 ---
 
 ## 🏗️ Technical Architecture
+
+```mermaid
+
+%% Arquitectura Técnica Simplificada
+subgraph Arquitectura
+L[Frontend Next.js] --> M[Integración Web3 Viem Wagmi]
+M --> N[Contratos en Solidity]
+N --> O[Blockchain Ethereum Arbitrum Base]
+O --> P[Pago con PYUSD]
+N --> Q[Agente de IA ASI]
+end
+
+```
 
 ```
 ┌─────────────────────────────────────────────────────────────┐

@@ -40,13 +40,17 @@ Digital House creates a **decentralized booking ecosystem** where:
 
 ```mermaid
 graph TD
-    A[Webhook Received] --> B[Extract User ID]
-    B --> C[Apply FilterMessageMozart]
-    C -->|Blocked| H[Set mozart_sent=false]
-    C -->|Allowed| I[Set mozart_sent=true]
-    H --> J[Persist Event]
-    I --> K[Send to Mozart IA]
-    K --> J[Persist Event]
+A[Usuario] --> B[Reserva con PYUSD]
+B --> C[Smart Contract DigitalHouseVault]
+C --> D[Sistema de Subastas]
+D --> E[Agente de IA analiza ofertas]
+E --> F{Decisión del usuario}
+F -->|Mantiene| G[Check-In y Código On-Chain]
+F -->|Cede| H[Transferencia de Reserva]
+G --> I[Pago al Hotel y Digital House]
+H --> J[Distribución de Ganancia]
+J --> I
+I --> K[Check-Out y Cierre de Contrato]
 
 ```
 

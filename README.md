@@ -29,6 +29,39 @@ Digital House creates a **decentralized booking ecosystem** where:
 
 ---
 
+## 🧭 Flujo General y Arquitectura Técnica
+
+```mermaid
+flowchart TD
+
+%% --- FLUJO DEL USUARIO ---
+A[👤 Usuario] --> B[💳 Reserva con PYUSD]
+B --> C[🪙 Smart Contract DigitalHouseVault]
+C --> D[🏛️ Sistema de Subastas]
+D --> E[🤖 Agente de IA analiza ofertas]
+E --> F{🧭 Decisión del usuario}
+F -->|Mantiene| G[🏠 Check-In y Código On-Chain]
+F -->|Cede| H[🔁 Transferencia de Reserva]
+G --> I[💰 Pago al Hotel y Digital House]
+H --> J[📈 Distribución de Ganancia]
+J --> I
+I --> K[🚪 Check-Out y Cierre de Contrato]
+
+%% --- ARQUITECTURA TÉCNICA SIMPLIFICADA ---
+subgraph Arquitectura["⚙️ Arquitectura Técnica Simplificada"]
+    L[🧩 Frontend Next.js] --> M[🔗 Integración Web3 con Viem & Wagmi]
+    M --> N[📝 Contratos en Solidity]
+    N --> O[⛓️ Blockchain Ethereum / Arbitrum / Base]
+    O --> P[💵 Pago con PYUSD]
+    N --> Q[🧠 Agente de IA ASI]
+end
+
+%% --- CONEXIÓN ENTRE FLUJO Y ARQUITECTURA ---
+A -. usa .-> L
+C -. implementado en .-> N
+E -. operado por .-> Q
+P -. procesa .-> I
+
 ## 🚀 Live Demo
 
 - **Frontend:** [digitalhouse.vercel.app](https://digitalhouse.vercel.app) *(Coming soon)*

@@ -32,8 +32,6 @@ Digital House creates a **decentralized booking ecosystem** where:
 ## 🧭 Flujo General y Arquitectura Técnica
 
 ```mermaid
-flowchart TD
-
 %% --- FLUJO DEL USUARIO ---
 A[👤 Usuario] --> B[💳 Reserva con PYUSD]
 B --> C[🪙 Smart Contract DigitalHouseVault]
@@ -61,6 +59,7 @@ A -. usa .-> L
 C -. implementado en .-> N
 E -. operado por .-> Q
 P -. procesa .-> I
+```
 
 ## 🚀 Live Demo
 

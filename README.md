@@ -37,6 +37,7 @@ Digital House creates a **decentralized booking ecosystem** where:
 
 ---
 
+
 ## 📋 Table of Contents
 
 - [How It Works](#-how-it-works)

@@ -69,55 +69,57 @@ I --> K[Check-Out y Cierre de Contrato]
 
 ## 🔄 DIGITAL HOUSE FLOW — Modular Overview
 
+## 🔄 DIGITAL HOUSE FLOW — Modular Overview
+
 ```mermaid
 flowchart TD
 
 %% === MÓDULO 1: RESERVATION ===
-subgraph MODULE_1["1️⃣ Reservation Phase"]
-    A1[User A stakes 1,000 PYUSD]
+subgraph MODULE_1["1. Reservation Phase"]
+    A1[User A stakes 1000 PYUSD]
     A2[Vault mints ownership shares]
-    A3[State changes → AUCTION]
+    A3[State changes to AUCTION]
     A1 --> A2 --> A3
 end
 
 %% === MÓDULO 2: AUCTION ===
-subgraph MODULE_2["2️⃣ Auction Phase"]
+subgraph MODULE_2["2. Auction Phase"]
     B1[Users B and C place bids]
-    B2[Highest bid = 1,500 PYUSD]
-    B3[User A decides before check-in]
+    B2[Highest bid is 1500 PYUSD]
+    B3[User A decides before check-in day]
     MODULE_1 --> B1 --> B2 --> B3
 end
 
 %% === MÓDULO 3: DECISION ===
-subgraph MODULE_3["3️⃣ Decision Phase"]
-    C1{Keep or Cede?}
-    C1 -->|Keep| C2[Keep Reservation → Refund Bids]
-    C1 -->|Cede| C3[Cede Reservation → Value Distribution]
+subgraph MODULE_3["3. Decision Phase"]
+    C1{Keep or Cede}
+    C1 -->|Keep| C2[Keep reservation and refund bids]
+    C1 -->|Cede| C3[Cede reservation and trigger distribution]
     MODULE_2 --> C1
 end
 
 %% === MÓDULO 4: DISTRIBUTION ===
-subgraph MODULE_4["4️⃣ Distribution Phase"]
-    D1[Additional Value = 500 PYUSD]
-    D2[20% Digital House]
-    D3[50% Hotel]
-    D4[30% User A → +150 PYUSD profit]
+subgraph MODULE_4["4. Distribution Phase"]
+    D1[Additional value equals 500 PYUSD]
+    D2[20 percent Digital House]
+    D3[50 percent Hotel]
+    D4[30 percent User A profit of 150 PYUSD]
     C3 --> D1 --> D2 --> D3 --> D4
 end
 
 %% === MÓDULO 5: SETTLEMENT ===
-subgraph MODULE_5["5️⃣ Settlement Phase"]
-    E1[Check-In → Payment Split (95% Hotel, 5% DH)]
-    E2[Generates 6-digit code on-chain]
-    E3[Check-Out → Vault resets to FREE]
+subgraph MODULE_5["5. Settlement Phase"]
+    E1[Check-In triggers payment split: 95 percent Hotel, 5 percent DH]
+    E2[Generates onchain access code 234567]
+    E3[Check-Out resets vault to FREE state]
     D4 --> E1 --> E2 --> E3
 end
 
 %% === CONTRATOS ===
-subgraph SMART_CONTRACTS["⚙️ Smart Contracts"]
-    SC1[DigitalHouseVault - Manages stakes and states]
-    SC2[AuctionManager - Handles bids and refunds]
-    SC3[SettlementAgent - Executes payments and code generation]
+subgraph SMART_CONTRACTS["Smart Contracts"]
+    SC1[DigitalHouseVault - manages stakes and state]
+    SC2[AuctionManager - handles bids and time]
+    SC3[SettlementAgent - executes payments and receipts]
     SC1 --> SC2 --> SC3
 end
 
@@ -127,8 +129,8 @@ MODULE_2 -. handled by .-> SC2
 MODULE_3 -. logic in .-> SC2
 MODULE_4 -. executed by .-> SC3
 MODULE_5 -. finalized by .-> SC3
-
 ```
+
 
 ## 🔄 How It Works
 ### Example

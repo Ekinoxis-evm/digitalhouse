@@ -72,6 +72,14 @@ export default function PrivyProviderWrapper({ children }: PrivyProviderWrapperP
         mfa: {
           noPromptOnMfaRequired: false,
         },
+        // Gas sponsorship configuration
+        // This allows you to sponsor gas fees for your users' transactions
+        // Configure gas policies in Privy Dashboard: https://dashboard.privy.io/
+        externalWallets: {
+          coinbaseWallet: {
+            connectionOptions: 'smartWalletOnly',
+          },
+        },
       }}
     >
       <QueryClientProvider client={queryClient}>

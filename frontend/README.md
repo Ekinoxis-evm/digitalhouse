@@ -1,6 +1,6 @@
 # Digital House - Frontend
 
-Next.js 14 frontend application for Digital House with Privy authentication and Web3 integration.
+Next.js 14 frontend application for Digital House with Privy authentication, Web3 integration, and **Gas Sponsorship** for free transactions.
 
 ## 🚀 Quick Start
 

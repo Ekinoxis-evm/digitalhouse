@@ -4,15 +4,15 @@
 
 **Eliminating billions in losses from last-minute cancellations through blockchain auctions and PYUSD**
 
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-[![Solidity](https://img.shields.io/badge/Solidity-0.8.20-363636?logo=solidity)](https://soliditylang.org/)
-[![Next.js](https://img.shields.io/badge/Next.js-14-black?logo=next.js)](https://nextjs.org/)
+[![License: MIT] https://img.shields.io/badge/License-MIT-yellow.svg  ] https://opensource.org/licenses/MIT  
+[![Solidity] https://img.shields.io/badge/Solidity-0.8.20-363636?logo=solidity  ] https://soliditylang.org/  
+[![Next.js] https://img.shields.io/badge/Next.js-14-black?logo=next.js  ] https://nextjs.org/  
 
 ---
 
 ## 🎯 The Problem
 
-The booking industry (hotels, events, flights) loses **billions of dollars annually** due to last-minute cancellations:
+The booking industry  hotels, events, flights   loses **billions of dollars annually** due to last-minute cancellations:
 - Hotels with empty rooms losing revenue
 - Users losing their deposits
 - No secondary market for transferring reservations
@@ -31,9 +31,9 @@ Digital House creates a **decentralized booking ecosystem** where:
 
 ## 🚀 Live Demo
 
-- **Frontend:** [digitalhouse.vercel.app](https://digitalhouse.vercel.app) *(Coming soon)*
-- **Video Demo:** [Watch on YouTube](https://youtube.com/...) *(5 min demo)*
-- **Presentation:** [Pitch Deck](https://...) *(Optional)*
+- **Frontend:** [digitalhouse.vercel.app] https://digitalhouse.vercel.app   * Coming soon  *
+- **Video Demo:** [Watch on YouTube] https://youtube.com/...   * 5 min demo  *
+- **Presentation:** [Pitch Deck] https://...   * Optional  *
 
 ---
 
@@ -56,14 +56,14 @@ I --> K[Check-Out y Cierre de Contrato]
 
 ## 📋 Table of Contents
 
-- [How It Works](#-how-it-works)
-- [Key Features](#-key-features)
-- [Technical Architecture](#-technical-architecture)
-- [Smart Contracts](#-smart-contracts)
-- [Getting Started](#-getting-started)
-- [Usage Guide](#-usage-guide)
-- [Technology Stack](#-technology-stack)
-- [Team](#-team)
+- [How It Works] #-how-it-works  
+- [Key Features] #-key-features  
+- [Technical Architecture] #-technical-architecture  
+- [Smart Contracts] #-smart-contracts  
+- [Getting Started] #-getting-started  
+- [Usage Guide] #-usage-guide  
+- [Technology Stack] #-technology-stack  
+- [Team] #-team  
 
 ---
 
@@ -74,20 +74,20 @@ I --> K[Check-Out y Cierre de Contrato]
 flowchart TD
 
 %% --- FLUJO PRINCIPAL DIGITAL HOUSE ---
-A[🏁 INITIAL RESERVATION<br/>(FREE → AUCTION)] --> B[⚖️ AUCTION SYSTEM<br/>(AUCTION)]
-B --> C[🧭 DECISION<br/>(KEEP or CEDE)]
-C -->|Keep Reservation| D[🏠 CHECK-IN<br/>(AUCTION → SETTLED)]
+A[🏁 INITIAL RESERVATION<br/> FREE → AUCTION  ] --> B[⚖️ AUCTION SYSTEM<br/> AUCTION  ]
+B --> C[🧭 DECISION<br/> KEEP or CEDE  ]
+C -->|Keep Reservation| D[🏠 CHECK-IN<br/> AUCTION → SETTLED  ]
 C -->|Cede Reservation| E[💰 DISTRIBUTION OF VALUE]
 E --> D
-D --> F[🚪 CHECK-OUT<br/>(SETTLED → FREE)]
+D --> F[🚪 CHECK-OUT<br/> SETTLED → FREE  ]
 
 %% --- DETALLES DE CADA ETAPA ---
 subgraph Detalles
-    A1["User A stakes 1,000 PYUSD → 100% ownership (vault shares)"]
+    A1["User A stakes 1,000 PYUSD → 100% ownership  vault shares  "]
     A2["State: AUCTION | Nonce: 1"]
     A --> A1 --> A2
     
-    B1["Other users can bid (User B: 1,200 PYUSD / User C: 1,500 PYUSD)"]
+    B1["Other users can bid  User B: 1,200 PYUSD / User C: 1,500 PYUSD  "]
     B2["User A decides until 1 day before check-in"]
     B --> B1 --> B2
 
@@ -98,7 +98,7 @@ subgraph Detalles
 
     E1["Additional Value = 1,500 - 1,000 = 500 PYUSD"]
     E2["Distribution: 20% DH | 50% Hotel | 30% User A"]
-    E3["User A total = 1,150 PYUSD (original + profit)"]
+    E3["User A total = 1,150 PYUSD  original + profit  "]
     E --> E1 --> E2 --> E3
 
     D1["Check-in triggers payment split: 95% Hotel | 5% DH"]
@@ -112,7 +112,7 @@ end
 
 %% --- CONTRATOS INTELIGENTES Y ARQUITECTURA ---
 subgraph Smart_Contracts["⚙️ Smart Contract Architecture"]
-    SC1[🪙 DigitalHouseVault<br/>• Manages stakes & ownership<br/>• Tracks state (FREE/AUCTION/SETTLED)]
+    SC1[🪙 DigitalHouseVault<br/>• Manages stakes & ownership<br/>• Tracks state  FREE/AUCTION/SETTLED  ]
     SC2[🏛️ AuctionManager<br/>• Receives bids<br/>• Handles time windows & refunds]
     SC3[📜 SettlementAgent<br/>• Executes check-in/check-out<br/>• Distributes PYUSD<br/>• Emits receipts]
     SC1 --> SC2 --> SC3
@@ -120,10 +120,10 @@ end
 
 %% --- INTERACCIÓN ENTRE ACTORES Y CONTRATOS ---
 UA[👤 User A] -->|Stake & Decision| SC1
-UB[👥 Bidders (B, C)] -->|Submit Bids| SC2
+UB[👥 Bidders  B, C  ] -->|Submit Bids| SC2
 AI[🤖 AI Agent] -->|Analyzes Offers| SC2
-DH[🏗️ Digital House Protocol] -->|Receives Fee (20%)| SC3
-HTL[🏨 Hotel] -->|Receives Payment (50–95%)| SC3
+DH[🏗️ Digital House Protocol] -->|Receives Fee  20%  | SC3
+HTL[🏨 Hotel] -->|Receives Payment  50–95%  | SC3
 VAULT[💼 Vault State Machine] -->|Manages Ownership| SC1
 
 %% --- CONEXIONES ENTRE FLUJO Y CONTRATOS ---
@@ -142,44 +142,44 @@ E -. distributes via .-> SC3
 │                    DIGITAL HOUSE FLOW                        │
 └─────────────────────────────────────────────────────────────┘
 
-1️⃣ INITIAL RESERVATION (FREE → AUCTION)
+1️⃣ INITIAL RESERVATION  FREE → AUCTION  
    User A wants to book apartment Oct 20-25
    ├─ Stakes: 1,000 PYUSD
-   ├─ Receives: 100% ownership (shares in vault)
+   ├─ Receives: 100% ownership  shares in vault  
    ├─ State: AUCTION
    └─ Nonce: 1
 
-2️⃣ AUCTION SYSTEM (AUCTION)
+2️⃣ AUCTION SYSTEM  AUCTION  
    Other users can offer more
    ├─ User B offers: 1,200 PYUSD
    ├─ User C offers: 1,500 PYUSD
    └─ User A has until 1 day before check-in to decide
 
-3️⃣ DECISION (AUCTION)
+3️⃣ DECISION  AUCTION  
    
    Option A: Keep Reservation
    └─ User A maintains booking, bids refunded
    
-   Option B: Cede Reservation (Citizen Value)
-   User A cedes to User C (1,500 PYUSD offer)
+   Option B: Cede Reservation  Citizen Value  
+   User A cedes to User C  1,500 PYUSD offer  
    
    ⚡ IMPORTANT: Distribution applies ONLY to additional value
    Additional Value = 1,500 - 1,000 = 500 PYUSD
    
    Distribution of 500 PYUSD:
-   ├─ 20% (100 PYUSD) → Digital House 
-   ├─ 50% (250 PYUSD) → Hotel
-   └─ 30% (150 PYUSD) → User A
+   ├─ 20%  100 PYUSD   → Digital House 
+   ├─ 50%  250 PYUSD   → Hotel
+   └─ 30%  150 PYUSD   → User A
    
    User A receives:
    ├─ Original stake returned: 1,000 PYUSD
-   ├─ Profit (30% of additional): 150 PYUSD
+   ├─ Profit  30% of additional  : 150 PYUSD
    └─ TOTAL: 1,150 PYUSD ✅
    
    User C now owns the reservation with 1,500 PYUSD stake
 
-4️⃣ CHECK-IN (AUCTION → SETTLED)
-   Day of check-in (Oct 20)
+4️⃣ CHECK-IN  AUCTION → SETTLED  
+   Day of check-in  Oct 20  
    ├─ User executes check-in
    ├─ PYUSD payment distributed:
    │   ├─ 95% → Real Estate/Hotel
@@ -187,8 +187,8 @@ E -. distributes via .-> SC3
    ├─ Generates 6-digit code: "234567"
    └─ Code opens box with room access card
 
-5️⃣ CHECK-OUT (SETTLED → FREE)
-   Day of check-out (Oct 25)
+5️⃣ CHECK-OUT  SETTLED → FREE  
+   Day of check-out  Oct 25  
    ├─ User executes check-out
    ├─ Contract settles
    ├─ Vault returns to FREE state
@@ -225,13 +225,13 @@ E -. distributes via .-> SC3
 
 ### 💸 Fair Payment Distribution
 
-**Normal Payment (100% of stake):**
-| Recipient | Percentage | Example (1,000 PYUSD) |
+**Normal Payment  100% of stake  :**
+| Recipient | Percentage | Example  1,000 PYUSD   |
 |-----------|------------|----------------------|
 | Hotel | 95% | 950 PYUSD |
 | Digital House | 5% | 50 PYUSD |
 
-**Cession - Citizen Value (only on additional value):**
+**Cession - Citizen Value  only on additional value  :**
 
 *Example: Stake 1,000 PYUSD → Offer 1,500 PYUSD*
 *Additional Value: 500 PYUSD*
@@ -243,7 +243,7 @@ E -. distributes via .-> SC3
 | Original User | 30% | 150 PYUSD |
 | + Original Stake | - | + 1,000 PYUSD |
 
-**Total Original User receives: 1,150 PYUSD (150 PYUSD profit)**
+**Total Original User receives: 1,150 PYUSD  150 PYUSD profit  **
 
 ---
 
@@ -268,7 +268,7 @@ end
 └─────────────────────────────────────────────────────────────┘
 
 ┌──────────────────────────────────────────────────────────────┐
-│  FRONTEND LAYER (Next.js 14 + TypeScript)                   │
+│  FRONTEND LAYER  Next.js 14 + TypeScript                     │
 │  ┌────────────┐  ┌────────────┐  ┌────────────┐            │
 │  │  Dashboard │  │  Auction   │  │  AI Chat   │            │
 │  │  Component │  │  Panel     │  │  Interface │            │
@@ -279,25 +279,25 @@ end
 │  WEB3 INTEGRATION LAYER                                      │
 │  ┌─────────┐  ┌─────────┐  ┌──────────┐  ┌──────────┐      │
 │  │ Privy   │  │  Viem   │  │  Wagmi   │  │  Ethers  │      │
-│  │ (Auth)  │  │ (Chain) │  │  (Hooks) │  │  (Utils) │      │
+│  │  Auth    │  │  Chain   │  │   Hooks   │  │   Utils   │      │
 │  └─────────┘  └─────────┘  └──────────┘  └──────────┘      │
 └──────────────────────────────────────────────────────────────┘
                            ↓
 ┌──────────────────────────────────────────────────────────────┐
-│  SMART CONTRACT LAYER (Solidity 0.8.20)                     │
+│  SMART CONTRACT LAYER  Solidity 0.8.20                       │
 │  ┌──────────────────────────────────────────────────────┐   │
 │  │  DigitalHouseFactory.sol                             │   │
-│  │  - createVault()                                     │   │
-│  │  - getVaultInfo()                                    │   │
+│  │  - createVault                                        │   │
+│  │  - getVaultInfo                                       │   │
 │  └──────────────────────────────────────────────────────┘   │
 │                           ↓                                  │
 │  ┌──────────────────────────────────────────────────────┐   │
-│  │  DigitalHouseVault.sol (Multiple Instances)         │   │
-│  │  - createReservation()                               │   │
-│  │  - placeBid()                                        │   │
-│  │  - cedeReservation()                                 │   │
-│  │  - checkIn()                                         │   │
-│  │  - checkOut()                                        │   │
+│  │  DigitalHouseVault.sol  Multiple Instances           │   │
+│  │  - createReservation                                  │   │
+│  │  - placeBid                                           │   │
+│  │  - cedeReservation                                    │   │
+│  │  - checkIn                                            │   │
+│  │  - checkOut                                           │   │
 │  └──────────────────────────────────────────────────────┘   │
 └──────────────────────────────────────────────────────────────┘
                            ↓
@@ -312,16 +312,16 @@ end
 ┌──────────────────────────────────────────────────────────────┐
 │  PAYMENT LAYER                                               │
 │  ┌──────────────────────────────────────────────────────┐   │
-│  │  PYUSD (PayPal USD Stablecoin)                       │   │
+│  │  PYUSD  PayPal USD Stablecoin                         │   │
 │  │  - Ethereum Sepolia: 0xCaC524...3bB9                 │   │
 │  │  - Arbitrum Sepolia: 0x637A12...aB1B1                │   │
 │  └──────────────────────────────────────────────────────┘   │
 └──────────────────────────────────────────────────────────────┘
                            ↓
 ┌──────────────────────────────────────────────────────────────┐
-│  AI LAYER (Optional - Can use Mock for MVP)                 │
+│  AI LAYER  Optional - Can use Mock for MVP                   │
 │  ┌──────────────────────────────────────────────────────┐   │
-│  │  ASI (Artificial Superintelligence Alliance)         │   │
+│  │  ASI  Artificial Superintelligence Alliance           │   │
 │  │  - Auction analysis                                  │   │
 │  │  - Profit calculations                               │   │
 │  │  - User guidance                                     │   │
@@ -350,11 +350,11 @@ enum VaultState {
 Factory pattern for creating multiple vault instances.
 
 **Key Functions:**
-- `createVault(vaultId, propertyDetails, basePrice)` - Create new property vault
-- `getVaultAddress(vaultId)` - Get vault address by ID
-- `getVaultInfo(vaultId)` - Get complete vault information
-- `getAllVaultIds()` - List all created vaults
-- `getOwnerVaults(owner)` - Get vaults by owner
+- `createVault vaultId, propertyDetails, basePrice  ` - Create new property vault
+- `getVaultAddress vaultId  ` - Get vault address by ID
+- `getVaultInfo vaultId  ` - Get complete vault information
+- `getAllVaultIds   ` - List all created vaults
+- `getOwnerVaults owner  ` - Get vaults by owner
 
 #### 2. DigitalHouseVault.sol
 Core contract managing reservations, auctions, and payments.
@@ -362,42 +362,42 @@ Core contract managing reservations, auctions, and payments.
 **Key Functions:**
 
 **Reservation Management:**
-- `createReservation(stakeAmount, checkInDate, checkOutDate)` - Create initial reservation
-- `cancelReservation()` - Cancel and move to next bidder
-- `getCurrentReservation()` - Get current reservation details
+- `createReservation stakeAmount, checkInDate, checkOutDate  ` - Create initial reservation
+- `cancelReservation   ` - Cancel and move to next bidder
+- `getCurrentReservation   ` - Get current reservation details
 
 **Auction System:**
-- `placeBid(bidAmount)` - Make an offer on existing reservation
-- `withdrawBid(bidIndex)` - Withdraw your bid
-- `cedeReservation(bidIndex)` - Original booker cedes to highest bidder
-- `getAuctionBids()` - Get all active bids
+- `placeBid bidAmount  ` - Make an offer on existing reservation
+- `withdrawBid bidIndex  ` - Withdraw your bid
+- `cedeReservation bidIndex  ` - Original booker cedes to highest bidder
+- `getAuctionBids   ` - Get all active bids
 
 **Check-in/Check-out:**
-- `checkIn()` - Execute check-in and generate access code
-- `checkOut()` - Complete stay and settle contract
+- `checkIn   ` - Execute check-in and generate access code
+- `checkOut   ` - Complete stay and settle contract
 
 **View Functions:**
-- `getVaultInfo()` - Get vault state, price, and nonce
-- `currentState()` - Get current vault state
-- `getAccessCode()` - Get current access code (after check-in)
+- `getVaultInfo   ` - Get vault state, price, and nonce
+- `currentState   ` - Get current vault state
+- `getAccessCode   ` - Get current access code  after check-in  
 
 ### Deployed Contracts
 
 #### Ethereum Sepolia
 ```
-Factory: 0x... (Deploy coming soon)
+Factory: 0x...  Deploy coming soon  
 PYUSD:   0xCaC524BcA292aaade2DF8A05cC58F0a65B1B3bB9
 ```
 
 #### Arbitrum Sepolia
 ```
-Factory: 0x... (Deploy coming soon)
+Factory: 0x...  Deploy coming soon  
 PYUSD:   0x637A1259C6afd7E3AdF63993cA7E58BB438aB1B1
 ```
 
 #### Base Sepolia
 ```
-Factory: 0x... (Deploy coming soon)
+Factory: 0x...  Deploy coming soon  
 PYUSD:   TBD
 ```
 
@@ -410,13 +410,13 @@ PYUSD:   TBD
 - Node.js 18+ and npm/yarn
 - Git
 - MetaMask or compatible Web3 wallet
-- PYUSD testnet tokens (we'll provide faucet)
+- PYUSD testnet tokens  we'll provide faucet  
 
 ### Project Structure
 
 ```
 digitalhouse/
-├── contracts/                      # Smart contracts (Hardhat)
+├── contracts/                      # Smart contracts  Hardhat  
 │   ├── core/                      # Core contracts
 │   │   ├── DigitalHouseFactory.sol
 │   │   └── DigitalHouseVault.sol
@@ -433,7 +433,7 @@ digitalhouse/
 │   │   ├── layout.tsx            # Root layout with Privy
 │   │   └── dashboard/            # Dashboard pages
 │   ├── components/                # React components
-│   │   ├── auth/                 # Authentication (Privy)
+│   │   ├── auth/                 # Authentication  Privy  
 │   │   ├── providers/            # Context providers
 │   │   ├── vault/                # Vault components
 │   │   └── ui/                   # Reusable UI
@@ -443,7 +443,7 @@ digitalhouse/
 │   │   └── utils.ts              # Helper functions
 │   └── types/                     # TypeScript types
 │
-├── ignition/modules/              # Deployment modules (Hardhat 3)
+├── ignition/modules/              # Deployment modules  Hardhat 3  
 │   └── DigitalHouseFactory.ts
 │
 ├── test/                          # Contract tests
@@ -499,7 +499,7 @@ REAL_ESTATE_ADDRESS=0x...
 DIGITAL_HOUSE_ADDRESS=0x...
 Digital House_ADDRESS=0x...
 
-# Block explorers (for verification)
+# Block explorers  for verification  
 ETHERSCAN_API_KEY=your_etherscan_key
 ARBISCAN_API_KEY=your_arbiscan_key
 BASESCAN_API_KEY=your_basescan_key
@@ -526,7 +526,7 @@ npm run test:gas
 
 #### 6. Deploy Contracts
 
-Using Hardhat Ignition (recommended):
+Using Hardhat Ignition  recommended  :
 
 ```bash
 # Deploy to local network
@@ -571,7 +571,7 @@ npm run node        # Start local Hardhat node
 npm run console     # Open Hardhat console
 ```
 
-### Frontend Setup (Next.js + Privy)
+### Frontend Setup  Next.js + Privy  
 
 After deploying contracts, set up the frontend:
 
@@ -589,12 +589,12 @@ npm install
 
 #### 3. Get Privy Credentials
 
-1. Create account at [dashboard.privy.io](https://dashboard.privy.io/)
+1. Create account at [dashboard.privy.io] https://dashboard.privy.io/  
 2. Create a new app
 3. Enable these testnets in Privy dashboard:
-   - Ethereum Sepolia (11155111)
-   - Arbitrum Sepolia (421614)
-   - Base Sepolia (84532)
+   - Ethereum Sepolia  11155111  
+   - Arbitrum Sepolia  421614  
+   - Base Sepolia  84532  
 4. Enable login methods: Wallet, Email, Google, Twitter
 5. Copy your App ID and Client ID
 
@@ -609,14 +609,14 @@ cp .env.example .env.local
 Edit `.env.local`:
 
 ```env
-# Privy (Required)
+# Privy  Required  
 NEXT_PUBLIC_PRIVY_APP_ID=your_privy_app_id
 NEXT_PUBLIC_PRIVY_CLIENT_ID=your_privy_client_id
 
-# Smart Contracts (Use addresses from step 6 deployment)
+# Smart Contracts  Use addresses from step 6 deployment  
 NEXT_PUBLIC_FACTORY_ADDRESS=0x_your_deployed_factory_address
 
-# PYUSD Addresses (Pre-configured)
+# PYUSD Addresses  Pre-configured  
 NEXT_PUBLIC_PYUSD_SEPOLIA=0xCaC524BcA292aaade2DF8A05cC58F0a65B1B3bB9
 NEXT_PUBLIC_PYUSD_ARBITRUM_SEPOLIA=0x637A1259C6afd7E3AdF63993cA7E58BB438aB1B1
 ```
@@ -627,7 +627,7 @@ NEXT_PUBLIC_PYUSD_ARBITRUM_SEPOLIA=0x637A1259C6afd7E3AdF63993cA7E58BB438aB1B1
 npm run dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000)
+Open [http://localhost:3000] http://localhost:3000  
 
 #### Frontend Commands
 
@@ -651,27 +651,27 @@ npm run type-check   # TypeScript type checking
 
 2. **Create Vault**
    - Navigate to "Create Property"
-   - Fill in property details (vaultId, description, base price)
+   - Fill in property details  vaultId, description, base price  
    - Deploy vault transaction
    - Receive vault address
 
 3. **Manage Bookings**
    - View incoming reservations
    - Monitor auction activity
-   - Receive payments automatically (95% of stake + 50% of additional value)
+   - Receive payments automatically  95% of stake + 50% of additional value  
 
 ### For Guests/Users
 
 #### Making a Reservation
 
 1. **Browse Properties**
-   - Explore available vaults (FREE state)
+   - Explore available vaults  FREE state  
    - Check property details and base pricing
 
 2. **Create Reservation**
    - Select check-in/check-out dates
    - Approve PYUSD tokens
-   - Stake PYUSD for reservation (minimum: base price)
+   - Stake PYUSD for reservation  minimum: base price  
    - Receive 100% ownership shares
    - Vault moves to AUCTION state
 
@@ -687,7 +687,7 @@ npm run type-check   # TypeScript type checking
    - Check current stake amount
 
 2. **Place Bid**
-   - Enter bid amount (must be higher than current stake)
+   - Enter bid amount  must be higher than current stake  
    - Approve PYUSD
    - Submit bid transaction
    - Funds held in contract
@@ -776,14 +776,14 @@ npm run type-check   # TypeScript type checking
 - **PYUSD** - PayPal USD stablecoin
 
 ### AI/ML
-- **ASI (Fetch.ai)** - Multi-agent system (planned)
+- **ASI  Fetch.ai  ** - Multi-agent system  planned  
 - **OpenAI GPT-3.5** - Fallback option
 - **Mock Agents** - MVP without external AI
 
 ### Infrastructure
 - **Vercel** - Frontend hosting
 - **GitHub** - Version control
-- **IPFS** - Decentralized storage (future)
+- **IPFS** - Decentralized storage  future  
 
 ---
 
@@ -792,43 +792,43 @@ npm run type-check   # TypeScript type checking
 ### Core Team
 
 **linktavo** - Product Manager & Fullstack Developer
-- GitHub: [@linktavo](https://github.com/linktavo)
+- GitHub: [@linktavo] https://github.com/linktavo  
 - Role: Product vision, frontend architecture, coordination
 
 **wmb81321** - IT Product Manager
-- GitHub: [@wmb81321](https://github.com/wmb81321)
+- GitHub: [@wmb81321] https://github.com/wmb81321  
 - Role: QA, testing, documentation, video production
 
 **Taniaagredo** - Fullstack Developer
-- GitHub: [@Taniaagredo](https://github.com/Taniaagredo)
+- GitHub: [@Taniaagredo] https://github.com/Taniaagredo  
 - Role: UI/UX implementation, design system, frontend polish
 
 **DevJhonnTorres** - Fullstack Developer
-- GitHub: [@DevJhonnTorres](https://github.com/DevJhonnTorres)
+- GitHub: [@DevJhonnTorres] https://github.com/DevJhonnTorres  
 - Role: Core components, AI integration, auction system
 
 **ICREE8** - Smart Contract Developer
-- GitHub: [@ICREE8](https://github.com/ICREE8)
+- GitHub: [@ICREE8] https://github.com/ICREE8  
 - Role: Solidity development, testing, deployment, security
 
 ### Contact
 
 - **Email:** team@digitalhouse.io
-- **Twitter:** [@DigitalHouseWeb3](https://twitter.com/...)
-- **Discord:** [Join our community](https://discord.gg/...)
+- **Twitter:** [@DigitalHouseWeb3] https://twitter.com/...  
+- **Discord:** [Join our community] https://discord.gg/...  
 
 ---
 
 ## 🗺️ Roadmap
 
-### ✅ Phase 1: MVP (ETHOnline 2024)
+### ✅ Phase 1: MVP  ETHOnline 2024  
 - [x] Core smart contracts with auction system
 - [x] Factory pattern for multiple vaults
 - [x] Citizen value distribution logic
 - [x] Basic frontend with wallet integration
 - [x] PYUSD payment integration
 - [x] Access code generation
-- [ ] AI agent integration (in progress)
+- [ ] AI agent integration  in progress  
 - [ ] Deploy to testnet
 - [ ] Demo video and documentation
 
@@ -837,7 +837,7 @@ npm run type-check   # TypeScript type checking
 - [ ] 5-10 real properties onboarded
 - [ ] Mobile-responsive design
 - [ ] Advanced AI features with ASI
-- [ ] Multi-chain support (Base, Arbitrum)
+- [ ] Multi-chain support  Base, Arbitrum  
 - [ ] Insurance integration
 
 ### 🚀 Phase 3: Scale 
@@ -850,14 +850,14 @@ npm run type-check   # TypeScript type checking
 
 ### Industry Problem
 
-- **$100B+** lost annually in cancellations (hotels alone)
+- **$100B+** lost annually in cancellations  hotels alone  
 - **40%** of hotel bookings are modified or cancelled
 - **$50-150** average cancellation fee per booking
 - **No secondary market** for transferring reservations
 
 ### Our Solution Impact
 
-- **100%** uptime for properties (always paid)
+- **100%** uptime for properties  always paid  
 - **+30%** extra revenue through auctions
 - **Win-win** for all participants
 - **Transparent** blockchain-based system
@@ -877,9 +877,9 @@ npm run type-check   # TypeScript type checking
 - ✅ ReentrancyGuard on all critical functions
 - ✅ Access control with Ownable pattern
 - ✅ Input validation and require statements
-- ✅ PYUSD-only payments (no direct ETH)
+- ✅ PYUSD-only payments  no direct ETH  
 - ✅ Pausable for emergencies
-- ⏳ External audit pending (OpenZeppelin/ConsenSys)
+- ⏳ External audit pending  OpenZeppelin/ConsenSys  
 
 ### Frontend Security
 
@@ -892,8 +892,8 @@ npm run type-check   # TypeScript type checking
 ### Best Practices
 
 - Regular security audits
-- Bug bounty program (coming soon)
-- Transparent code (open source)
+- Bug bounty program  coming soon  
+- Transparent code  open source  
 - Multi-sig for admin functions
 - Time-locks for critical changes
 
@@ -901,7 +901,7 @@ npm run type-check   # TypeScript type checking
 
 ## 📄 License
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+This project is licensed under the MIT License - see the [LICENSE] LICENSE   file for details.
 
 ---
 
@@ -919,22 +919,22 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 ## 📚 Additional Resources
 
 ### Documentation
-- [Technical Documentation](./docs/TECHNICAL.md)
-- [Architecture Guide](./docs/ARCHITECTURE.md)
-- [Deployment Guide](./docs/DEPLOYMENT.md)
-- [Contracts README](./contracts/README.md)
-- [Frontend README](./frontend/README.md)
+- [Technical Documentation] ./docs/TECHNICAL.md  
+- [Architecture Guide] ./docs/ARCHITECTURE.md  
+- [Deployment Guide] ./docs/DEPLOYMENT.md  
+- [Contracts README] ./contracts/README.md  
+- [Frontend README] ./frontend/README.md  
 
 ### Links
-- [Demo Video](https://youtube.com/...) - 5 minute walkthrough
-- [Pitch Deck](https://...) - Investor presentation
-- [Figma Design](https://figma.com/...) - UI/UX mockups
-- [Block Explorer](https://sepolia.etherscan.io/address/0x...) - Verified contracts
+- [Demo Video] https://youtube.com/...   - 5 minute walkthrough
+- [Pitch Deck] https://...   - Investor presentation
+- [Figma Design] https://figma.com/...   - UI/UX mockups
+- [Block Explorer] https://sepolia.etherscan.io/address/0x...   - Verified contracts
 
 ### Community
-- [Discord](https://discord.gg/...) - Join our community
-- [Twitter](https://twitter.com/...) - Follow for updates
-- [Blog](https://medium.com/@digitalhouse) - Technical articles
+- [Discord] https://discord.gg/...   - Join our community
+- [Twitter] https://twitter.com/...   - Follow for updates
+- [Blog] https://medium.com/@digitalhouse   - Technical articles
 
 ---
 
@@ -942,7 +942,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 **Digital House** - Revolutionizing bookings with blockchain, one reservation at a time.
 
-[🚀 Try Demo](https://digitalhouse.vercel.app) | [📺 Watch Video](https://youtube.com/...) | [💬 Join Discord](https://discord.gg/...)
+[🚀 Try Demo] https://digitalhouse.vercel.app   | [📺 Watch Video] https://youtube.com/...   | [💬 Join Discord] https://discord.gg/...  
 
 ---
 

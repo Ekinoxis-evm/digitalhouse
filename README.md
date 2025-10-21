@@ -4,7 +4,6 @@
 
 **Eliminating billions in losses from last-minute cancellations through blockchain auctions and PYUSD**
 
-[![ETHOnline 2025](https://img.shields.io/badge/ETHOnline-2024-blue)](https://ethglobal.com/events/ethonline2024)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Solidity](https://img.shields.io/badge/Solidity-0.8.20-363636?logo=solidity)](https://soliditylang.org/)
 [![Next.js](https://img.shields.io/badge/Next.js-14-black?logo=next.js)](https://nextjs.org/)

@@ -5,6 +5,7 @@ import { useRouter } from 'next/navigation';
 import { useEffect } from 'react';
 import LoginButton from '@/components/auth/LoginButton';
 import UserProfile from '@/components/auth/UserProfile';
+import GasSponsorshipBadge, { GasSponsorshipInfo } from '@/components/ui/GasSponsorshipBadge';
 import { Home, Plus, List, TrendingUp } from 'lucide-react';
 
 /**
@@ -62,12 +63,21 @@ export default function DashboardPage() {
       <main className="container mx-auto px-4 py-12">
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
           {/* Left Column - User Profile */}
-          <div className="lg:col-span-1">
+          <div className="lg:col-span-1 space-y-6">
             <UserProfile />
+
+            {/* Gas Sponsorship Status */}
+            <div className="bg-gray-800 rounded-lg p-6">
+              <h3 className="text-lg font-bold text-white mb-4">Transaction Status</h3>
+              <GasSponsorshipBadge />
+            </div>
           </div>
 
           {/* Right Column - Actions */}
           <div className="lg:col-span-2 space-y-8">
+            {/* Gas Sponsorship Info */}
+            <GasSponsorshipInfo />
+
             {/* Quick Actions */}
             <div className="bg-gray-800 rounded-lg p-6">
               <h2 className="text-2xl font-bold text-white mb-6">Quick Actions</h2>

@@ -4,7 +4,7 @@
 
 **Eliminating billions in losses from last-minute cancellations through blockchain auctions and PYUSD**
 
-[![ETHOnline 2024](https://img.shields.io/badge/ETHOnline-2024-blue)](https://ethglobal.com/events/ethonline2024)
+[![ETHOnline 2025](https://img.shields.io/badge/ETHOnline-2024-blue)](https://ethglobal.com/events/ethonline2024)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Solidity](https://img.shields.io/badge/Solidity-0.8.20-363636?logo=solidity)](https://soliditylang.org/)
 [![Next.js](https://img.shields.io/badge/Next.js-14-black?logo=next.js)](https://nextjs.org/)
@@ -738,29 +738,17 @@ npm run type-check   # TypeScript type checking
 - [ ] Deploy to testnet
 - [ ] Demo video and documentation
 
-### 🔄 Phase 2: Beta Launch (Q4 2024)
+### 🔄 Phase 2: Beta Launch
 - [ ] Mainnet deployment
 - [ ] 5-10 real properties onboarded
 - [ ] Mobile-responsive design
 - [ ] Advanced AI features with ASI
-- [ ] Multi-chain support (Polygon, Optimism)
+- [ ] Multi-chain support (Base, Arbitrum)
 - [ ] Insurance integration
 
-### 🚀 Phase 3: Scale (Q1-Q2 2025)
+### 🚀 Phase 3: Scale 
 - [ ] 100+ properties across 10 cities
-- [ ] Mobile app (iOS/Android)
-- [ ] Reputation system with NFTs
 - [ ] Dynamic pricing with ML
-- [ ] Partnership with hotel chains
-- [ ] DAO governance ($HOUSE token)
-
-### 🌟 Phase 4: Expansion (Q3-Q4 2025)
-- [ ] International expansion
-- [ ] Events and flights integration
-- [ ] Multi-property packages
-- [ ] B2B API for travel platforms
-- [ ] Loyalty rewards program
-- [ ] Carbon offset integration
 
 ---
 
@@ -856,7 +844,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ---
 
-## 🎉 Built for ETHOnline 2024
+## 🎉 Built for ETHOnline 2025
 
 **Digital House** - Revolutionizing bookings with blockchain, one reservation at a time.
 

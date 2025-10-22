@@ -1,7 +1,7 @@
 # 🏠 Digital House
 **Eliminating billions in losses from last-minute cancellations through blockchain auctions and PYUSD**
 
-[![ETHOnline 2024](https://img.shields.io/badge/ETHOnline-2024-blue)](https://ethglobal.com/events/ethonline2024)
+[![ETHOnline 2025](https://img.shields.io/badge/ETHOnline-2025-blue)](https://ethglobal.com/events/ethonline2025)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Solidity](https://img.shields.io/badge/Solidity-0.8.20-363636?logo=solidity)](https://soliditylang.org/)
 [![Next.js](https://img.shields.io/badge/Next.js-14-black?logo=next.js)](https://nextjs.org/)
@@ -684,7 +684,7 @@ Open [http://localhost:3000](http://localhost:3000)
 
 ## 🗺️ Roadmap
 
-### ✅ Phase 1: MVP (ETHOnline 2024)
+### ✅ Phase 1: MVP (ETHOnline 2025)
 - [x] Core smart contracts
 - [x] Factory pattern for multiple vaults
 - [x] Auction system with citizen value
@@ -695,7 +695,7 @@ Open [http://localhost:3000](http://localhost:3000)
 - [ ] Deploy to testnet
 - [ ] Demo video and documentation
 
-### 🔄 Phase 2: Beta Launch (Q4 2024)
+### 🔄 Phase 2: Beta Launch (Q4 2025)
 - [ ] Mainnet deployment
 - [ ] 5-10 real properties onboarded
 - [ ] Mobile-responsive design
@@ -782,7 +782,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ## 🙏 Acknowledgments
 
-- **ETHGlobal** - For organizing ETHOnline 2024
+- **ETHGlobal** - For organizing ETHOnline 2025
 - **PayPal/PYUSD** - For stablecoin integration
 - **Privy** - For seamless wallet authentication
 - **OpenZeppelin** - For secure smart contract libraries
@@ -812,7 +812,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ---
 
-## 🎉 Built for ETHOnline 2024
+## 🎉 Built for ETHOnline 2025
 
 **Digital House** - Revolutionizing bookings with blockchain, one reservation at a time.
 

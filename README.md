@@ -1,7 +1,4 @@
 # 🏠 Digital House
-
-### Decentralized Booking Platform with Auction System and AI Agents
-
 **Eliminating billions in losses from last-minute cancellations through blockchain auctions and PYUSD**
 
 [![ETHOnline 2024](https://img.shields.io/badge/ETHOnline-2024-blue)](https://ethglobal.com/events/ethonline2024)
